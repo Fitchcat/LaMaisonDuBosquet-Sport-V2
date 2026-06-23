@@ -220,16 +220,16 @@ section {
   letter-spacing: 0.15em;
   font-size: 1.1rem;
   font-weight: 300;
-  border: 1px solid var(--color-text);
+  border: 1px solid #caa77a;
   background: transparent;
-  color: var(--color-text);
+  color: #caa77a;
   cursor: pointer;
   transition: all var(--transition-fast);
   border-radius: 50px; /* Boutons totalement arrondis */
 }
 
 .btn:hover {
-  background: var(--color-text);
+  background: #caa77a;
   color: var(--color-white);
 }
 
