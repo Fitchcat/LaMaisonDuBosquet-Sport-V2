@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tarifs | La Maison du Bosquet</title>
-  <meta name="description" content="Découvrez nos tarifs et offres pour les cours de Pilates, Yoga et nos autres services à La Maison du Bosquet.">
+  <title>FAQ | La Maison du Bosquet</title>
+  <meta name="description" content="Une approche holistique du mouvement à Carnon-Plage. Pilates, Yoga, Massages et A.P.A dans un espace pensé pour la sérénité.">
   
   <link rel="stylesheet" href="style.css">
 </head>
@@ -26,11 +26,13 @@
           <li><a href="training-apa.html">A.P.A</a></li>
           <li><a href="yoga.html">Yoga</a></li>
           <li><a href="massages.html">Massages</a></li>
-          <li><a href="tarifs.html" class="active">Tarifs</a></li>
-          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="tarifs.html">Tarifs</a></li>
+          <li><a href="faq.html" class="active">FAQ</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
+      
+      <a href="#offre-decouverte" class="btn btn-primary" style="display: none;">JE RÉSERVE</a>
       
       <button class="burger-btn" aria-label="Menu" aria-expanded="false">
         <div class="burger-line"></div>
@@ -47,50 +49,56 @@
     <a href="training-apa.html">A.P.A</a>
     <a href="yoga.html">Yoga</a>
     <a href="massages.html">Massages</a>
-    <a href="tarifs.html" class="active">Tarifs</a>
-    <a href="faq.html">FAQ</a>
+    <a href="tarifs.html">Tarifs</a>
+    <a href="faq.html" class="active">FAQ</a>
     <a href="contact.html">Contact</a>
     <a href="#offre-decouverte" style="color: var(--color-accent); font-size: 1.5rem; margin-top: 2rem;">RÉSERVER</a>
   </nav>
 
-  <!-- HERO (Full bleed) -->
-  <section style="padding: 0; margin-bottom: 10rem;">
-    <div class="hero-image-wrapper" style="height: 85vh; width: 100%; overflow: hidden;">
-      <!-- Using a placeholder image for tarifs, we can update it later -->
-      <img src="Photos/PILATES/Pilates02.png" alt="Nos Tarifs" style="width: 100%; height: 100%; object-fit: cover; object-position: center 20%;">
+    <section style="padding: 0; margin-bottom: 5rem;">
+    <div class="hero-image-wrapper" style="height: 60vh; width: 100%; overflow: hidden;">
+      <img src="Photos/YOGA/Yoga03.jpg" alt="FAQ" style="width: 100%; height: 100%; object-fit: cover; object-position: center 30%;">
     </div>
     
     <div class="container text-center reveal" style="margin-top: -5rem; position: relative; z-index: 2; background: var(--color-bg); padding: 4rem 2rem; max-width: 900px; border-radius: 30px;">
-      <h1>Nos Tarifs</h1>
-      <p style="margin: 2rem auto 3rem;">Découvrez nos différentes offres, cartes de cours et abonnements adaptés à votre rythme de pratique.</p>
-      <a href="#les-tarifs" class="btn btn-primary">Voir les offres</a>
+      <h1>Questions Fréquentes</h1>
+      <p style="margin: 2rem auto 0;">Toutes les informations pratiques pour préparer votre venue.</p>
     </div>
   </section>
 
-  <!-- SECTIONS TARIFS -->
-  <section id="les-tarifs" class="container reveal">
-    <div class="text-center mb-4">
-      <span class="sur-titre">Cartes & Abonnements</span>
-      <h2>Choisissez votre formule</h2>
-    </div>
-    
-    <div style="border: 1px solid var(--color-border); padding: 5rem 2rem; text-align: center; max-width: 900px; margin: 0 auto; background: var(--color-white); border-radius: 30px;">
-      <p style="font-family: var(--font-heading); font-size: 1.5rem;">[Intégration du widget de tarifs BSport ou Grille de tarifs à venir]</p>
+  <section class="container reveal" style="margin-bottom: 8rem;">
+    <div class="faq-accordion">
+      
+      <div class="faq-item">
+        <button class="faq-question">Que dois-je apporter pour mon premier cours ? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">
+          <p>Une tenue confortable permettant une grande liberté de mouvement. Nous fournissons les tapis, accessoires et tout le matériel nécessaire à la pratique. Vous pouvez apporter une gourde et une serviette si vous le souhaitez.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <button class="faq-question">Comment réserver une séance ? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">
+          <p>Toutes les réservations se font via notre plateforme en ligne BSport, accessible depuis le bouton "RÉSERVER" sur ce site. Il vous suffit de créer un compte et de choisir le créneau qui vous convient.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <button class="faq-question">Je suis débutant, quel cours me conseillez-vous ? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">
+          <p>Tous nos cours sont adaptés à tous les niveaux. Nos effectifs réduits permettent à nos professeurs d'adapter les options à chaque participant. N'hésitez pas à mentionner que vous débutez en arrivant !</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <button class="faq-question">Quelles sont vos conditions d'annulation ? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">
+          <p>Vous pouvez annuler sans frais jusqu'à 24h avant le début du cours ou du massage. Au-delà, la séance sera facturée ou décomptée de votre carte.</p>
+        </div>
+      </div>
+
     </div>
   </section>
-
-    <!-- CTA BANNER -->
-  <section id="offre-decouverte" class="cta-banner reveal" style="z-index: 2;" style="padding-top: 5rem;">
-    <span class="sur-titre">Invitation</span>
-    <h2>Commencez votre voyage</h2>
-    
-    <div style="background: var(--color-white); border-radius: 30px; padding: 4rem 2rem; max-width: 500px; margin: 3rem auto 0; border: 1px solid rgba(193, 68, 45, 0.2); box-shadow: 0 10px 50px rgba(193, 68, 45, 0.25);">
-      <h3 style="font-family: var(--font-body); font-weight: 400; font-size: 1.2rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">Offre Découverte</h3>
-      <p style="font-size: 1.5rem; color: var(--color-text); margin-bottom: 3rem; font-weight: 300;">Profitez de votre première séance à <strong>10€</strong></p>
-      <a href="https://bsport.io/planning" target="_blank" class="btn btn-primary" style="width: 100%;">JE RÉSERVE</a>
-    </div>
-  </section>
-
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container">
@@ -98,23 +106,28 @@
         <div>
           <img src="Branding/LogoVert.png" alt="Logo" style="height: 65px; margin-bottom: 2rem;">
           <p>16 Rue Samuel Bassaget<br>34130 Carnon-Plage</p>
+          <p style="margin-top: 1rem;">T. 04 22 91 06 49</p>
         </div>
+        
         <div>
           <h4>Disciplines</h4>
           <ul>
             <li style="margin-bottom: 0.5rem;"><a href="pilates.html">Pilates</a></li>
-            <li style="margin-bottom: 0.5rem;"><a href="training-apa.html">A.P.A</a></li>
             <li style="margin-bottom: 0.5rem;"><a href="yoga.html">Yoga</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="training-apa.html">A.P.A</a></li>
             <li style="margin-bottom: 0.5rem;"><a href="massages.html">Massages</a></li>
           </ul>
         </div>
+
         <div>
           <h4>Espace Membre</h4>
           <ul>
             <li style="margin-bottom: 0.5rem;"><a href="tarifs.html">Tarifs</a></li>
-            <li style="margin-bottom: 0.5rem;"><a href="tarifs.html">Cartes de cours</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="faq.html" class="active">FAQ</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="contact.html">Contact</a></li>
           </ul>
         </div>
+        
         <div>
           <h4>Connect</h4>
           <ul>
@@ -122,18 +135,25 @@
           </ul>
         </div>
       </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 La Maison du Bosquet.</p>
+      </div>
     </div>
   </footer>
 
   <script>
+    // Reveal Animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
       });
     }, { threshold: 0.15 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+    // Header Scroll Logic
     window.addEventListener('scroll', () => {
       const header = document.querySelector('.site-header');
       if(window.scrollY > 50) {
@@ -143,6 +163,7 @@
       }
     });
 
+    // Mobile Menu
     const burger = document.querySelector('.burger-btn');
     const menu = document.querySelector('.mobile-menu');
     burger.addEventListener('click', () => {
@@ -157,6 +178,22 @@
       }
     });
   
+    
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isActive = item.classList.contains('active');
+        
+        // Close all other items
+        document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
+        
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+
     // Parallax and global reveal
     document.querySelectorAll("section:not(.reveal)").forEach(el => {
       el.classList.add("reveal");
