@@ -1,30 +1,31 @@
 /* ==========================================================================
-   VARIABLES CSS (SÉRÉNITÉ NOCTURNE - DARK MODE)
+   VARIABLES CSS (LUXURY WELLNESS - HOTEL STYLE)
+   Mix: 50% Sky Ting, 30% The Pilates Class, 20% Ourano Yoga
    ========================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Jost:wght@300;400;500&display=swap');
 
 :root {
-  /* Colors - Dark Mode profond */
-  --color-bg: #5C786F; /* Vert foncé/Sauge profond */
-  --color-text: #FBF9F6; /* Crème clair pour la lisibilité */
-  --color-text-light: #9CA8A3; /* Vert/gris pâle */
+  /* Colors - Ultra minimaliste */
+  --color-bg: #FBF9F6; /* Crème très clair, poudré */
+  --color-text: #222222; /* Noir profond mais doux (pas #000) */
+  --color-text-light: #666666; /* Gris chaud pour les descriptions */
   
-  /* L'accent doré/sauge */
-  --color-accent: #D4AF37; /* Doré doux */
+  /* L'accent demandé par le client */
+  --color-accent: #C1442D; /* Rouge/Orange vibrant */
   
   --color-white: #FFFFFF;
-  --color-border: #2A3632; /* Lignes discrètes */
+  --color-border: #EAE6DF; /* Bordure presque invisible */
 
-  /* Typography - Moderne et fluide */
-  --font-heading: 'Outfit', sans-serif;
-  --font-body: 'Outfit', sans-serif;
+  /* Typography - Très mode / hôtellerie */
+  --font-heading: Avenir, sans-serif; /* Avenir comme demandé */
+  --font-body: 'Jost', sans-serif; /* Sans-serif géométrique, fin, très "The Pilates Class" */
 
-  /* Layout & Spacing */
+  /* Layout & Spacing - Le "vide" est notre meilleur atout */
   --header-height: 80px;
   --header-scrolled-height: 60px;
   --container-max: 1400px;
   --container-px: 5vw;
-  --spacing-section: 15rem;
+  --spacing-section: 15rem; /* Marges gigantesques */
   --spacing-section-mobile: 8rem;
 
   /* Timings */
@@ -163,9 +164,7 @@ section {
 }
 
 .site-header.scrolled {
-  background: rgba(92, 120, 111, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--color-border);
+  background: #5C786F;
   height: var(--header-scrolled-height);
 }
 
@@ -201,7 +200,7 @@ section {
 
 .main-nav a:hover,
 .main-nav a.active {
-  color: var(--color-accent) !important;
+  color: #caa77a !important;
   text-decoration: underline;
   text-underline-offset: 4px;
   opacity: 1;
@@ -486,7 +485,7 @@ section {
   width: 100%;
   height: 150px;
   transform: translateY(-50%);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 100' preserveAspectRatio='none'%3E%3Cpath d='M0,50 Q250,100 500,50 T1000,50' fill='none' stroke='%23D4AF37' stroke-width='2'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 100' preserveAspectRatio='none'%3E%3Cpath d='M0,50 Q250,100 500,50 T1000,50' fill='none' stroke='%23C1442D' stroke-width='2'/%3E%3C/svg%3E");
   background-repeat: repeat-x;
   background-size: 1000px 100%;
   z-index: 0;
@@ -503,7 +502,7 @@ section {
   width: 100%;
   height: 150px;
   transform: translateY(-50%) scaleX(-1); /* Inverse la vague pour la désynchroniser */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 100' preserveAspectRatio='none'%3E%3Cpath d='M0,50 Q250,100 500,50 T1000,50' fill='none' stroke='%23D4AF37' stroke-width='2'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 100' preserveAspectRatio='none'%3E%3Cpath d='M0,50 Q250,100 500,50 T1000,50' fill='none' stroke='%23C1442D' stroke-width='2'/%3E%3C/svg%3E");
   background-repeat: repeat-x;
   background-size: 1000px 100%;
   z-index: 0;
@@ -653,6 +652,21 @@ section {
   transform: translateY(0);
 }
 
+/* Apparition de gauche à droite pour l'image de gauche */
+.editorial-split .editorial-img.reveal {
+  transform: translateX(-80px);
+}
+
+/* Apparition de droite à gauche pour l'image de droite */
+.editorial-split.reverse .editorial-img.reveal {
+  transform: translateX(80px);
+}
+
+.editorial-split .editorial-img.reveal.visible,
+.editorial-split.reverse .editorial-img.reveal.visible {
+  transform: translateX(0);
+}
+
 /* ==========================================================================
    CUSTOM SCROLLBARS (Discreet luxury)
    ========================================================================== */
@@ -683,13 +697,4 @@ html, body, div[id^="bsport-widget"] {
   scrollbar-color: #caa77a transparent;
 }
 
-/* ==========================================================================
-   PARALLAX OVERRIDES
-   ========================================================================== */
-.hero-image-wrapper video,
-.hero-image-wrapper img,
-.large-image-break img,
-.editorial-img img {
-  will-change: transform;
-  transform-origin: center;
-}
+/* Parallax retiré selon la demande */
