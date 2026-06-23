@@ -1,0 +1,695 @@
+/* ==========================================================================
+   VARIABLES CSS (SÉRÉNITÉ NOCTURNE - DARK MODE)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&display=swap');
+
+:root {
+  /* Colors - Dark Mode profond */
+  --color-bg: #121A16; /* Vert forêt très sombre presque noir */
+  --color-text: #FBF9F6; /* Crème clair pour la lisibilité */
+  --color-text-light: #9CA8A3; /* Vert/gris pâle */
+  
+  /* L'accent doré/sauge */
+  --color-accent: #D4AF37; /* Doré doux */
+  
+  --color-white: #FFFFFF;
+  --color-border: #2A3632; /* Lignes discrètes */
+
+  /* Typography - Moderne et fluide */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+
+  /* Layout & Spacing */
+  --header-height: 80px;
+  --header-scrolled-height: 60px;
+  --container-max: 1400px;
+  --container-px: 5vw;
+  --spacing-section: 15rem;
+  --spacing-section-mobile: 8rem;
+
+  /* Timings */
+  --transition-slow: 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-fast: 0.3s ease;
+}
+
+/* ==========================================================================
+   RESET & BASE
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Typography Rules */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: clamp(3rem, 7vw, 6rem);
+  letter-spacing: 0.02em;
+}
+
+h2 {
+  font-size: clamp(2rem, 4.5vw, 4.5rem);
+  letter-spacing: 0.01em;
+  margin-bottom: 2rem;
+}
+
+h3 {
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--color-text-light);
+  margin-bottom: 1.5rem;
+  max-width: 600px; /* Ne jamais avoir de lignes de texte trop longues */
+}
+
+/* Le sur-titre style "magazine" (très The Pilates Class) */
+.sur-titre {
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+}
+
+a:hover {
+  opacity: 0.6;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================================================
+   LAYOUT
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-px);
+}
+
+section {
+  padding: var(--spacing-section) 0;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: var(--spacing-section-mobile) 0;
+  }
+}
+
+.text-center { text-align: center; }
+.text-center p { margin-left: auto; margin-right: auto; }
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  transition: all var(--transition-slow);
+  background: transparent;
+  color: var(--color-white);
+  border-bottom: none;
+}
+
+.site-header.scrolled {
+  background: rgba(18, 26, 22, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+  height: var(--header-scrolled-height);
+}
+
+/* Logo beaucoup plus grand au repos */
+.logo img {
+  height: 130px;
+  transition: all var(--transition-fast);
+  margin-top: 60px; /* Pousse le logo encore plus vers le bas */
+  image-rendering: high-quality; /* Améliore le lissage */
+  -webkit-font-smoothing: antialiased;
+  transform: translateZ(0); /* Force l'accélération matérielle */
+}
+
+.site-header.scrolled .logo img {
+  height: 40px; /* Revient petit sur le bandeau sauge */
+  margin-top: 0px; /* Le replace au centre lors du scroll */
+}
+
+.main-nav ul {
+  display: flex;
+  gap: 4rem;
+}
+
+.main-nav a {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 500;
+  position: relative;
+  color: var(--color-white);
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  color: var(--color-accent) !important;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  opacity: 1;
+}
+
+/* ==========================================================================
+   BUTTONS (Accent Terracotta)
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 3rem;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 1.1rem;
+  font-weight: 300;
+  border: 1px solid var(--color-text);
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border-radius: 50px; /* Boutons totalement arrondis */
+}
+
+.btn:hover {
+  background: var(--color-text);
+  color: var(--color-white);
+}
+
+/* Le bouton principal prend l'accent Terracotta demandé */
+.btn-primary {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: var(--color-accent);
+}
+
+/* ==========================================================================
+   HERO (Video Fullscreen)
+   ========================================================================== */
+.luxury-hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Retrait du padding-top pour que la vidéo aille jusqu'en haut sous le header */
+  padding-top: 0; 
+  margin-bottom: 5rem;
+}
+
+.hero-video-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hero-video-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  animation: kenBurns 30s infinite alternate ease-in-out;
+}
+
+/* Recadrage spécifique pour mobile pour ne pas couper la tête */
+@media (max-width: 768px) {
+  .hero-video-wrapper video {
+    object-position: center 0%; /* Calage absolu sur le haut de l'image (0%) */
+  }
+}
+
+/* Overlay sombre pour garantir la lisibilité du texte blanc */
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+/* Dégradé spécifique en haut pour faire ressortir le menu/logo */
+.hero-image-wrapper {
+  position: relative;
+}
+
+.hero-video-wrapper::after,
+.hero-image-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 200px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Ken Burns effect pour toutes les bannières */
+@keyframes kenBurns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.12); }
+}
+
+/* Titre par-dessus la vidéo, poussé vers le bas */
+.hero-text-overlay {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--color-white);
+  padding: 0 2rem;
+  max-width: 900px;
+  margin-top: 25vh; /* Pousse le contenu vers le bas */
+}
+
+@media (max-width: 768px) {
+  .hero-text-overlay {
+    margin-top: 10vh; /* Remonte le texte sur mobile */
+  }
+}
+
+.hero-text-overlay h1 {
+  color: var(--color-white);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  font-size: clamp(2.2rem, 5vw, 4.5rem); /* Titre légèrement plus petit */
+}
+
+.hero-text-overlay .sur-titre {
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.hero-text-overlay p {
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  font-size: 1.35rem; /* Agrandissement du sous-titre */
+  font-weight: 400;
+}
+
+/* Variante où l'image prend vraiment 100% de l'écran sans padding */
+.hero-full-bleed {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.hero-full-bleed img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: kenBurns 30s infinite alternate ease-in-out;
+}
+
+/* ==========================================================================
+   EDITORIAL SPLIT (Image + Texte)
+   ========================================================================== */
+.editorial-split {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+@media (min-width: 1024px) {
+  .editorial-split {
+    flex-direction: row;
+    align-items: center;
+    gap: 8rem; /* Vide gigantesque entre photo et texte */
+  }
+  .editorial-split.reverse {
+    flex-direction: row-reverse;
+  }
+}
+
+.editorial-img {
+  width: 100%;
+  height: 70vh; /* Photos très verticales façon mode */
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .editorial-img {
+    width: 45%;
+    height: 90vh;
+  }
+}
+
+.editorial-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.editorial-content {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .editorial-content {
+    width: 55%;
+    padding-right: 4rem;
+  }
+  .editorial-split.reverse .editorial-content {
+    padding-right: 0;
+    padding-left: 4rem;
+  }
+}
+
+/* ==========================================================================
+   LISTE ÉPURÉE (Bénéfices / Valeurs)
+   ========================================================================== */
+.clean-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.clean-list-item {
+  border-top: 1px solid var(--color-border);
+  padding-top: 2rem;
+}
+
+.clean-list-item h3 {
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.clean-list-item p {
+  font-size: 1.2rem;
+  color: var(--color-text);
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   LARGE IMAGE BREAK
+   ========================================================================== */
+.large-image-break {
+  width: 100%;
+  height: 80vh;
+  padding: 0 var(--container-px);
+  position: relative;
+  overflow: hidden;
+}
+
+.large-image-break img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   CTA BANNER (Offre découverte)
+   ========================================================================== */
+.cta-banner {
+  text-align: center;
+  padding: 10rem var(--container-px);
+  background-color: var(--color-bg); /* Reste crème, pas de fond lourd */
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-banner::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  transform: translateY(-50%);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 100' preserveAspectRatio='none'%3E%3Cpath d='M0,50 Q250,100 500,50 T1000,50' fill='none' stroke='%23D4AF37' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 1000px 100%;
+  z-index: 0;
+  animation: waveBackground 15s linear infinite;
+  opacity: 0.2; /* Subtil mais visible */
+  pointer-events: none;
+}
+
+.cta-banner::after {
+  content: "";
+  position: absolute;
+  top: 55%; /* Léger décalage vers le bas */
+  left: 0;
+  width: 100%;
+  height: 150px;
+  transform: translateY(-50%) scaleX(-1); /* Inverse la vague pour la désynchroniser */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 100' preserveAspectRatio='none'%3E%3Cpath d='M0,50 Q250,100 500,50 T1000,50' fill='none' stroke='%23D4AF37' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 1000px 100%;
+  z-index: 0;
+  animation: waveBackground 22s linear infinite reverse; /* Vitesse différente et direction opposée */
+  opacity: 0.15; /* Encore plus subtil */
+  pointer-events: none;
+}
+
+@keyframes waveBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -1000px 0;
+  }
+}
+
+.cta-banner > * {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-banner h2 {
+  font-size: clamp(3rem, 6vw, 5rem);
+  margin-bottom: 2rem;
+}
+
+.cta-banner p {
+  margin: 0 auto 3rem;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.site-footer {
+  padding: 8rem 0 2rem;
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  margin-bottom: 6rem;
+}
+
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.site-footer h4 {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 2rem;
+  color: var(--color-text-light);
+}
+
+.site-footer p, .site-footer a {
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+/* ==========================================================================
+   MOBILE MENU & ANIMATIONS
+   ========================================================================== */
+/* Masqué par défaut */
+.mobile-menu {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .main-nav, .site-header .btn { display: none; }
+  
+  .burger-btn {
+    display: block;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 101;
+    width: 30px;
+    height: 12px;
+    position: relative;
+  }
+  .burger-line {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: var(--color-text);
+    transition: all var(--transition-fast);
+  }
+  .burger-line:nth-child(1) { top: 0; }
+  .burger-line:nth-child(2) { top: 50%; transform: translateY(-50%); display: none; }
+  .burger-line:nth-child(3) { bottom: 0; }
+
+  .mobile-menu {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--color-bg);
+    z-index: 99;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-slow);
+  }
+  
+  .mobile-menu.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .mobile-menu a {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    display: block;
+    text-align: center;
+  }
+}
+
+/* Reveal Animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   CUSTOM SCROLLBARS (Discreet luxury)
+   ========================================================================== */
+::-webkit-scrollbar,
+div[id^="bsport-widget"]::-webkit-scrollbar {
+  width: 6px; /* Très discret */
+}
+
+::-webkit-scrollbar-track,
+div[id^="bsport-widget"]::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb,
+div[id^="bsport-widget"]::-webkit-scrollbar-thumb {
+  background-color: #caa77a !important; /* Sable / Beige */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover,
+div[id^="bsport-widget"]::-webkit-scrollbar-thumb:hover {
+  background-color: #b59266 !important; /* Un peu plus foncé au survol */
+}
+
+/* Support Firefox */
+html, body, div[id^="bsport-widget"] {
+  scrollbar-width: thin;
+  scrollbar-color: #caa77a transparent;
+}
+
+/* ==========================================================================
+   PARALLAX OVERRIDES
+   ========================================================================== */
+.hero-image-wrapper video,
+.hero-image-wrapper img,
+.large-image-break img,
+.editorial-img img {
+  will-change: transform;
+  transform-origin: center;
+}

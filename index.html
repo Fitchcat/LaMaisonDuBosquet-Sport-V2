@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Maison du Bosquet | Mouvement & Bien-être</title>
+  <meta name="description" content="Une approche holistique du mouvement à Carnon-Plage. Pilates, Yoga, Massages et A.P.A dans un espace pensé pour la sérénité.">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+      <div class="logo">
+        <a href="index.html">
+          <img src="Branding/MaisonDuBosquet_logo_vectorise_blanc.svg" alt="La Maison du Bosquet">
+        </a>
+      </div>
+      
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="pilates.html">Pilates</a></li>
+          <li><a href="yoga.html">Yoga</a></li>
+          <li><a href="tarifs.html">Tarifs</a></li>
+        </ul>
+      </nav>
+      
+      <a href="#offre-decouverte" class="btn btn-primary" style="display: none;">JE RÉSERVE</a>
+      
+      <button class="burger-btn" aria-label="Menu" aria-expanded="false">
+        <div class="burger-line"></div>
+        <div class="burger-line"></div>
+        <div class="burger-line"></div>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <nav class="mobile-menu">
+    <a href="index.html">Accueil</a>
+    <a href="pilates.html">Pilates</a>
+    <a href="yoga.html">Yoga</a>
+    <a href="tarifs.html">Tarifs</a>
+    <a href="#offre-decouverte" style="color: var(--color-accent); font-size: 1.5rem; margin-top: 2rem;">RÉSERVER</a>
+  </nav>
+
+  <!-- HERO (Video Fullscreen) -->
+  <section class="luxury-hero">
+    <div class="hero-video-wrapper">
+      <video autoplay muted loop playsinline>
+        <source src="video/HeroVideo.mp4" type="video/mp4">
+      </video>
+      <div class="hero-video-overlay"></div>
+    </div>
+    
+    <div class="hero-text-overlay reveal">
+      <h1>Le refuge du corps<br>et de l'esprit</h1>
+      <p style="margin: 2rem auto 3rem;">Retrouvez force, mobilité et clarté mentale à Montpellier. Un sanctuaire dédié au Pilates, au Yoga et aux soins du corps, pensé comme une retraite hors du temps.</p>
+      <a href="#offre-decouverte" class="btn btn-primary">JE RÉSERVE</a>
+    </div>
+  </section>
+
+  <!-- EDITORIAL SPLIT: PILATES -->
+  <section class="editorial-split container">
+    <div class="editorial-img reveal">
+      <img src="Photos/PILATES/Pilates04.jpg" alt="La méthode Pilates">
+    </div>
+    <div class="editorial-content reveal">
+      <span class="sur-titre">La Pratique</span>
+      <h2>Pilates</h2>
+      <p>L'alliance parfaite de la force profonde et du contrôle absolu. Une méthode douce mais intense pour renforcer votre centre, allonger votre silhouette et corriger votre posture en conscience.</p>
+      <div style="margin-top: 3rem;">
+        <a href="pilates.html" class="btn">Découvrir le Pilates</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDITORIAL SPLIT: YOGA -->
+  <section class="editorial-split reverse container">
+    <div class="editorial-img reveal">
+      <img src="Photos/YOGA/Yoga04.jpg" alt="Séance de Yoga">
+    </div>
+    <div class="editorial-content reveal">
+      <span class="sur-titre">L'Apaisement</span>
+      <h2>Yoga</h2>
+      <p>Reconnectez le corps et l'esprit à travers des pratiques classiques et du Hatha Yoga. Un espace pour respirer, retrouver de la flexibilité et ancrer votre sérénité au quotidien.</p>
+      <div style="margin-top: 3rem;">
+        <a href="yoga.html" class="btn">Découvrir le Yoga</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLEAN LIST: POURQUOI NOUS ? -->
+  <section class="container reveal">
+    <div class="text-center mb-4">
+      <span class="sur-titre">Philosophie</span>
+      <h2>Une approche sur-mesure</h2>
+    </div>
+    
+    <div class="clean-list">
+      <div class="clean-list-item">
+        <h3>L'Intimité du groupe</h3>
+        <p>Des effectifs très réduits pour garantir un accompagnement quasi-individuel et préserver la quiétude du lieu.</p>
+      </div>
+      <div class="clean-list-item">
+        <h3>Expertise & Bienveillance</h3>
+        <p>Nos professeurs sont des experts certifiés, dédiés à l'évolution de votre pratique dans le respect de votre anatomie.</p>
+      </div>
+      <div class="clean-list-item">
+        <h3>Une vision holistique</h3>
+        <p>Du renforcement musculaire profond (Pilates) à la récupération par le massage (Ko Bi Do, Réflexologie), tout est pensé pour votre équilibre.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section id="offre-decouverte" class="cta-banner reveal" style="z-index: 2;" style="padding-top: 5rem;">
+    <span class="sur-titre">Invitation</span>
+    <h2>Commencez votre voyage</h2>
+    
+    <div style="background: rgba(18, 26, 22, 0.8); backdrop-filter: blur(10px); border-radius: 30px; padding: 4rem 2rem; max-width: 500px; margin: 3rem auto 0; border: 1px solid rgba(212, 175, 55, 0.3); box-shadow: 0 10px 50px rgba(212, 175, 55, 0.15);">
+      <h3 style="font-family: var(--font-body); font-weight: 400; font-size: 1.2rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-accent);">Offre Découverte</h3>
+      <p style="font-size: 1.5rem; color: var(--color-text); margin-bottom: 3rem; font-weight: 300;">Profitez de votre première séance à <strong>10€</strong></p>
+      <a href="https://bsport.io/planning" target="_blank" class="btn btn-primary" style="width: 100%;">JE RÉSERVE</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img src="Branding/MaisonDuBosquet_logo_vectorise_blanc.svg" alt="Logo" style="height: 65px; margin-bottom: 2rem; opacity: 0.8;">
+          <p>16 Rue Samuel Bassaget<br>34130 Carnon-Plage</p>
+          <p style="margin-top: 1rem;">T. 04 22 91 06 49</p>
+        </div>
+        
+        <div>
+          <h4>Disciplines</h4>
+          <ul>
+            <li style="margin-bottom: 0.5rem;"><a href="pilates.html">Pilates</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="yoga.html">Yoga</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="#">A.P.A</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="#">Massages</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Espace Membre</h4>
+          <ul>
+            <li style="margin-bottom: 0.5rem;"><a href="tarifs.html">Tarifs</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="#tarifs">Tarifs & Cartes</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="https://www.instagram.com/maisondubosquet/" target="_blank">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 La Maison du Bosquet.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Reveal Animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Header Scroll Logic
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('.site-header');
+      if(window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile Menu
+    const burger = document.querySelector('.burger-btn');
+    const menu = document.querySelector('.mobile-menu');
+    burger.addEventListener('click', () => {
+      menu.classList.toggle('open');
+      const lines = burger.querySelectorAll('.burger-line');
+      if (menu.classList.contains('open')) {
+        lines[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+        lines[2].style.transform = 'rotate(-45deg) translate(2px, -2px)';
+      } else {
+        lines[0].style.transform = 'none';
+        lines[2].style.transform = 'none';
+      }
+    });
+  
+    // Parallax and global reveal
+    document.querySelectorAll("section:not(.reveal)").forEach(el => {
+      el.classList.add("reveal");
+      observer.observe(el);
+    });
+
+    let ticking = false;
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const parallaxElements = document.querySelectorAll(".hero-image-wrapper video, .hero-image-wrapper img, .large-image-break img, .editorial-img img");
+          parallaxElements.forEach(el => {
+            const speed = 0.05;
+            const rect = el.parentElement.getBoundingClientRect();
+            if(rect.top < window.innerHeight && rect.bottom > 0) {
+              const yPos = (rect.top * speed);
+              el.style.transform = `scale(1.15) translateY(${yPos}px)`;
+            }
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  </script>
+</body>
+</html>
