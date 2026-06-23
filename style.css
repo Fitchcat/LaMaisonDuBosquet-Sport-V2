@@ -5,7 +5,7 @@
 
 :root {
   /* Colors - Dark Mode profond */
-  --color-bg: #121A16; /* Vert forêt très sombre presque noir */
+  --color-bg: #5C786F; /* Vert foncé/Sauge profond */
   --color-text: #FBF9F6; /* Crème clair pour la lisibilité */
   --color-text-light: #9CA8A3; /* Vert/gris pâle */
   
@@ -163,7 +163,7 @@ section {
 }
 
 .site-header.scrolled {
-  background: rgba(18, 26, 22, 0.95);
+  background: rgba(92, 120, 111, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-border);
   height: var(--header-scrolled-height);
