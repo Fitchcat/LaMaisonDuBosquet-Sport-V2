@@ -70,7 +70,18 @@
     <!-- Barre de recherche FAQ -->
     <div class="faq-search-container" style="max-width: 600px; margin: 0 auto 3rem auto;">
       <input type="text" id="faq-search" placeholder="Tapez votre question (ex: annulation, tenue, réservation...)" style="width: 100%; padding: 1.2rem 1.5rem; border-radius: 30px; border: 1px solid var(--color-border); font-size: 1.1rem; background: var(--color-white); box-shadow: 0 4px 15px rgba(0,0,0,0.03); outline: none; transition: border-color 0.3s ease;">
-      <p id="faq-no-result" style="display: none; text-align: center; color: var(--color-text-light); margin-top: 1rem; font-style: italic;">Aucune réponse trouvée. N'hésitez pas à nous <a href="contact.html" style="text-decoration: underline;">contacter</a> !</p>
+      <div id="faq-no-result" style="display: none; margin-top: 2rem; background: var(--color-white); padding: 2rem; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); text-align: center;">
+        <h3 style="margin-bottom: 1rem; font-size: 1.2rem;">Votre question n'est pas dans la liste ?</h3>
+        <p style="margin-bottom: 1.5rem; color: var(--color-text-light); font-size: 0.95rem;">Laissez-nous votre email et nous vous répondrons très vite !</p>
+        <form action="https://formsubmit.co/hello@maisondubosquet.com" method="POST" style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px; margin: 0 auto;">
+          <input type="hidden" name="_subject" value="Nouvelle question depuis la FAQ">
+          <input type="hidden" name="_next" value="https://la-maison-du-bosquet-sport-v2.vercel.app/faq.html">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="email" name="email" placeholder="Votre adresse email" required style="padding: 1rem; border-radius: 10px; border: 1px solid var(--color-border); font-family: inherit;">
+          <textarea name="question" id="faq-mini-textarea" placeholder="Votre question..." required rows="3" style="padding: 1rem; border-radius: 10px; border: 1px solid var(--color-border); font-family: inherit; resize: vertical;"></textarea>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Envoyer ma question</button>
+        </form>
+      </div>
     </div>
 
     <div class="faq-accordion" id="dynamic-faq-container">
@@ -265,6 +276,11 @@
         
         if(!hasVisibleItems && term.length > 0) {
           noResultMsg.style.display = 'block';
+          // Auto-fill the textarea with the user's search query
+          const textarea = document.getElementById('faq-mini-textarea');
+          if (textarea && !textarea.value.includes(e.target.value)) {
+            textarea.value = e.target.value;
+          }
         } else {
           noResultMsg.style.display = 'none';
         }
