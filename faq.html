@@ -67,6 +67,12 @@
   </section>
 
   <section class="container reveal" style="margin-bottom: 8rem;">
+    <!-- Barre de recherche FAQ -->
+    <div class="faq-search-container" style="max-width: 600px; margin: 0 auto 3rem auto;">
+      <input type="text" id="faq-search" placeholder="Tapez votre question (ex: annulation, tenue, réservation...)" style="width: 100%; padding: 1.2rem 1.5rem; border-radius: 30px; border: 1px solid var(--color-border); font-size: 1.1rem; background: var(--color-white); box-shadow: 0 4px 15px rgba(0,0,0,0.03); outline: none; transition: border-color 0.3s ease;">
+      <p id="faq-no-result" style="display: none; text-align: center; color: var(--color-text-light); margin-top: 1rem; font-style: italic;">Aucune réponse trouvée. N'hésitez pas à nous <a href="contact.html" style="text-decoration: underline;">contacter</a> !</p>
+    </div>
+
     <div class="faq-accordion">
       
       <div class="faq-item">
@@ -193,6 +199,52 @@
         }
       });
     });
+
+    // FAQ Intelligent Search
+    const searchInput = document.getElementById('faq-search');
+    const faqItems = document.querySelectorAll('.faq-item');
+    const noResultMsg = document.getElementById('faq-no-result');
+
+    if(searchInput) {
+      // Focus effect
+      searchInput.addEventListener('focus', () => {
+        searchInput.style.borderColor = 'var(--color-accent)';
+      });
+      searchInput.addEventListener('blur', () => {
+        searchInput.style.borderColor = 'var(--color-border)';
+      });
+
+      searchInput.addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase().trim();
+        let hasVisibleItems = false;
+        
+        faqItems.forEach(item => {
+          const question = item.querySelector('.faq-question').textContent.toLowerCase();
+          const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+          
+          if(question.includes(term) || answer.includes(term)) {
+            item.style.display = 'block';
+            hasVisibleItems = true;
+            
+            // Auto-expand if there's a search term
+            if(term.length > 2) {
+              item.classList.add('active');
+            } else if (term.length === 0) {
+              item.classList.remove('active');
+            }
+          } else {
+            item.style.display = 'none';
+            item.classList.remove('active');
+          }
+        });
+        
+        if(!hasVisibleItems && term.length > 0) {
+          noResultMsg.style.display = 'block';
+        } else {
+          noResultMsg.style.display = 'none';
+        }
+      });
+    }
 
     // Parallax and global reveal
     document.querySelectorAll("section:not(.reveal)").forEach(el => {
