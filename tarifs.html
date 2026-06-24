@@ -290,7 +290,8 @@
               
               const titre = item.Titre || '';
               const prix = item.Prix || '';
-              const valide = item.Valide || item.Description || '';
+              let valide = item.Valide || item.Description || '';
+              valide = valide.replace(/:\s*/g, ':<br>');
               const btnTexte = item.BoutonTexte || 'Réserver';
               const lien = item.Lien || '#';
 
