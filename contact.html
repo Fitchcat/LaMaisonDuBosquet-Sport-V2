@@ -56,8 +56,12 @@
   </nav>
 
     <section style="padding: 0; margin-bottom: 5rem;">
-    <div class="hero-image-wrapper" style="height: 60vh; width: 100%; overflow: hidden;">
-      <img src="Photos/PILATES/Pilates02.png" alt="Contact" style="width: 100%; height: 100%; object-fit: cover; object-position: center 30%;">
+    <div class="hero-image-wrapper" style="height: 60vh; width: 100%; overflow: hidden; position: relative;">
+      <img src="Photos/LIEU/Lieu08.jpg" class="hero-carousel-slide active" alt="Lieu 08" style="object-position: center 30%;">
+      <img src="Photos/LIEU/Lieu09.jpg" class="hero-carousel-slide" alt="Lieu 09" style="object-position: center 30%;">
+      <img src="Photos/LIEU/Lieu12.jpg" class="hero-carousel-slide" alt="Lieu 12" style="object-position: center 30%;">
+      <img src="Photos/LIEU/lieu02.jpg" class="hero-carousel-slide" alt="Lieu 02" style="object-position: center 30%;">
+      <img src="Photos/LIEU/LIEU07.jpg" class="hero-carousel-slide" alt="Lieu 07" style="object-position: center 30%;">
     </div>
     
     <div class="container text-center reveal" style="margin-top: -5rem; position: relative; z-index: 2; background: var(--color-bg); padding: 4rem 2rem; max-width: 900px; border-radius: 30px;">
@@ -188,6 +192,20 @@
       }
     });
   
+    
+    // Carousel Contact Hero
+    setInterval(() => {
+      const slides = document.querySelectorAll('.hero-carousel-slide');
+      if (slides.length > 0) {
+        let activeIdx = Array.from(slides).findIndex(s => s.classList.contains('active'));
+        if (activeIdx !== -1) {
+          slides[activeIdx].classList.remove('active');
+          activeIdx = (activeIdx + 1) % slides.length;
+          slides[activeIdx].classList.add('active');
+        }
+      }
+    }, 3500);
+
     // Parallax and global reveal
     document.querySelectorAll("section:not(.reveal)").forEach(el => {
       el.classList.add("reveal");
