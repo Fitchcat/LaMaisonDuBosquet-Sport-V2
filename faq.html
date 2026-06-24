@@ -66,7 +66,7 @@
     </div>
   </section>
 
-  <section class="container reveal" style="margin-bottom: 8rem;">
+  <section class="container" style="margin-bottom: 8rem;">
     <!-- Barre de recherche FAQ -->
     <div class="faq-search-container" style="max-width: 600px; margin: 0 auto 3rem auto;">
       <input type="text" id="faq-search" placeholder="Tapez votre question (ex: annulation, tenue, réservation...)" style="width: 100%; padding: 1.2rem 1.5rem; border-radius: 30px; border: 1px solid var(--color-border); font-size: 1.1rem; background: var(--color-white); box-shadow: 0 4px 15px rgba(0,0,0,0.03); outline: none; transition: border-color 0.3s ease;">
@@ -173,65 +173,70 @@
     });
   
     
+    
     // Google Sheets CSV URL
     const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRxMYmyUgs53eMH1WouqeTKfyfOKHQ1gokVU6cTJohoklE4FMyXggZf_z7DiVqQnmH6ID-NVu-cQ1kn/pub?output=csv';
 
     // Load FAQ Dynamically
-    function loadFaqs() {
+    async function loadFaqs() {
       const container = document.getElementById('dynamic-faq-container');
-      
-      Papa.parse(csvUrl, {
-        download: true,
-        header: true,
-        complete: function(results) {
-          const data = results.data;
-          container.innerHTML = ''; // Clear loader
-          
-          // Filter out completely empty rows
-          const validData = data.filter(row => row.Question && row.Question.trim() !== '');
-
-          if (validData.length === 0) {
-            container.innerHTML = `<p style="text-align:center; color: var(--color-text-light);">Aucune question pour le moment.</p>`;
-            return;
-          }
-
-          validData.forEach(faq => {
-            const question = faq.Question || faq.question || faq[Object.keys(faq)[0]];
-            const answer = faq['Réponse'] || faq.Reponse || faq.answer || faq[Object.keys(faq)[1]];
+      try {
+        const response = await fetch(csvUrl + '&t=' + new Date().getTime(), { cache: 'no-store' });
+        if (!response.ok) throw new Error('Network error');
+        const csvText = await response.text();
+        
+        Papa.parse(csvText, {
+          header: true,
+          complete: function(results) {
+            const data = results.data;
+            container.innerHTML = ''; 
             
-            const item = document.createElement('div');
-            item.className = 'faq-item';
-            item.innerHTML = `
-              <button class="faq-question">${question} <span class="faq-icon">+</span></button>
-              <div class="faq-answer">
-                <p>${answer.replace(/\n/g, '<br>')}</p>
-              </div>
-            `;
-            container.appendChild(item);
-          });
+            const validData = data.filter(row => row.Question && row.Question.trim() !== '');
 
-          // Attach Accordion Events to new elements
-          document.querySelectorAll('.faq-question').forEach(btn => {
-            btn.addEventListener('click', () => {
-              const item = btn.parentElement;
-              const isActive = item.classList.contains('active');
-              document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
-              if (!isActive) item.classList.add('active');
+            if (validData.length === 0) {
+              container.innerHTML = `<p style="text-align:center; color: var(--color-text-light);">Aucune question pour le moment.</p>`;
+              return;
+            }
+
+            validData.forEach(faq => {
+              const question = faq.Question || faq.question || faq[Object.keys(faq)[0]];
+              const answer = faq['Réponse'] || faq.Reponse || faq.answer || faq[Object.keys(faq)[1]];
+              
+              const item = document.createElement('div');
+              item.className = 'faq-item';
+              item.innerHTML = `
+                <button class="faq-question">${question} <span class="faq-icon">+</span></button>
+                <div class="faq-answer">
+                  <p>${answer.replace(/\n/g, '<br>')}</p>
+                </div>
+              `;
+              container.appendChild(item);
             });
-          });
-          
-          // Setup Search Bar logic on dynamically loaded elements
-          setupSearch();
-        },
-        error: function(error) {
-          container.innerHTML = `<p style="text-align:center; color:red;">Erreur de chargement de la FAQ.</p>`;
-          console.error("Erreur PapaParse:", error);
-        }
-      });
+
+            document.querySelectorAll('.faq-question').forEach(btn => {
+              btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
+                if (!isActive) item.classList.add('active');
+              });
+            });
+            
+            setupSearch();
+          },
+          error: function(error) {
+            container.innerHTML = `<p style="text-align:center; color:red;">Erreur de chargement de la FAQ.</p>`;
+            console.error("Erreur PapaParse:", error);
+          }
+        });
+      } catch (error) {
+        container.innerHTML = `<p style="text-align:center; color:red;">Erreur de connexion à la FAQ. Veuillez rafraîchir la page.</p>`;
+        console.error("Fetch error:", error);
+      }
     }
 
-    // Call load on page start
     loadFaqs();
+
 
     // FAQ Intelligent Search
     function setupSearch() {

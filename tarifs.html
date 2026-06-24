@@ -143,7 +143,7 @@
   </section>
 
   <!-- SECTIONS TARIFS -->
-  <section id="les-tarifs" class="container reveal">
+  <section id="les-tarifs" class="container">
     <div class="text-center mb-4">
       <span class="sur-titre">Cartes & Abonnements</span>
       <h2>Choisissez votre formule</h2>
@@ -243,86 +243,85 @@
       observer.observe(el);
     });
 
+    
     // Google Sheets CSV URL for Tarifs
     const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRxMYmyUgs53eMH1WouqeTKfyfOKHQ1gokVU6cTJohoklE4FMyXggZf_z7DiVqQnmH6ID-NVu-cQ1kn/pub?gid=1740182240&single=true&output=csv';
 
     // Load Tarifs Dynamically
-    function loadTarifs() {
+    async function loadTarifs() {
       const container = document.getElementById('dynamic-tarifs-container');
-      
-      Papa.parse(csvUrl, {
-        download: true,
-        header: true,
-        complete: function(results) {
-          const data = results.data;
-          container.innerHTML = ''; // Clear loader
-          
-          // Filter out completely empty rows
-          const validData = data.filter(row => row.Categorie && row.Categorie.trim() !== '');
-
-          if (validData.length === 0) {
-            container.innerHTML = `<p style="text-align:center; color: var(--color-text-light);">Aucun tarif disponible pour le moment.</p>`;
-            return;
-          }
-
-          // Group by category
-          const groupedData = {};
-          validData.forEach(row => {
-            const cat = row.Categorie.trim();
-            if (!groupedData[cat]) {
-              groupedData[cat] = [];
-            }
-            groupedData[cat].push(row);
-          });
-
-          // Render categories and cards
-          for (const [category, items] of Object.entries(groupedData)) {
-            const catSection = document.createElement('div');
-            catSection.className = 'tarifs-category';
+      try {
+        const response = await fetch(csvUrl + '&t=' + new Date().getTime(), { cache: 'no-store' });
+        if (!response.ok) throw new Error('Network error');
+        const csvText = await response.text();
+        
+        Papa.parse(csvText, {
+          header: true,
+          complete: function(results) {
+            const data = results.data;
+            container.innerHTML = '';
             
-            const catTitle = document.createElement('h3');
-            catTitle.textContent = category;
-            catSection.appendChild(catTitle);
+            const validData = data.filter(row => row.Categorie && row.Categorie.trim() !== '');
 
-            const grid = document.createElement('div');
-            grid.className = 'tarifs-grid';
+            if (validData.length === 0) {
+              container.innerHTML = `<p style="text-align:center; color: var(--color-text-light);">Aucun tarif disponible pour le moment.</p>`;
+              return;
+            }
 
-            items.forEach(item => {
-              const card = document.createElement('div');
-              card.className = 'tarif-card';
-              
-              let titre = item.Titre || '';
-              titre = titre.replace(/:\s*/g, ' :<br>');
-              const prix = item.Prix || '';
-              const valide = item.Valide || item.Description || '';
-              const btnTexte = item.BoutonTexte || 'Réserver';
-              const lien = item.Lien || '#';
-
-              card.innerHTML = `
-                <div class="tarif-title">${titre}</div>
-                <div class="tarif-price">${prix}</div>
-                <div class="tarif-desc">${valide}</div>
-                <a href="${lien}" target="_blank" class="btn btn-outline tarif-btn">${btnTexte}</a>
-              `;
-              grid.appendChild(card);
+            const groupedData = {};
+            validData.forEach(row => {
+              const cat = row.Categorie.trim();
+              if (!groupedData[cat]) groupedData[cat] = [];
+              groupedData[cat].push(row);
             });
 
-            catSection.appendChild(grid);
-            container.appendChild(catSection);
-          }
+            for (const [category, items] of Object.entries(groupedData)) {
+              const catSection = document.createElement('div');
+              catSection.className = 'tarifs-category';
+              
+              const catTitle = document.createElement('h3');
+              catTitle.textContent = category;
+              catSection.appendChild(catTitle);
 
-          // Re-trigger observer for new elements
-          
-        },
-        error: function(error) {
-          container.innerHTML = `<p style="text-align:center; color:red;">Erreur de chargement des tarifs.</p>`;
-          console.error("Erreur PapaParse:", error);
-        }
-      });
+              const grid = document.createElement('div');
+              grid.className = 'tarifs-grid';
+
+              items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'tarif-card';
+                
+                let titre = item.Titre || '';
+                titre = titre.replace(/:\s*/g, ' :<br>');
+                const prix = item.Prix || '';
+                const valide = item.Valide || item.Description || '';
+                const btnTexte = item.BoutonTexte || 'Réserver';
+                const lien = item.Lien || '#';
+
+                card.innerHTML = `
+                  <div class="tarif-title">${titre}</div>
+                  <div class="tarif-price">${prix}</div>
+                  <div class="tarif-desc">${valide}</div>
+                  <a href="${lien}" target="_blank" class="btn btn-outline tarif-btn">${btnTexte}</a>
+                `;
+                grid.appendChild(card);
+              });
+
+              catSection.appendChild(grid);
+              container.appendChild(catSection);
+            }
+          },
+          error: function(error) {
+            container.innerHTML = `<p style="text-align:center; color:red;">Erreur d'analyse des tarifs.</p>`;
+            console.error("Erreur PapaParse:", error);
+          }
+        });
+      } catch (error) {
+        container.innerHTML = `<p style="text-align:center; color:red;">Erreur de connexion aux tarifs. Veuillez rafraîchir la page.</p>`;
+        console.error("Fetch error:", error);
+      }
     }
 
     loadTarifs();
-
-  </script>
+</script>
 </body>
 </html>
