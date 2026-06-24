@@ -185,12 +185,12 @@ section {
 
 .main-nav ul {
   display: flex;
-  gap: 4rem;
+  gap: 2.5rem;
 }
 
 .main-nav a {
   font-family: var(--font-body);
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
   font-weight: 500;
