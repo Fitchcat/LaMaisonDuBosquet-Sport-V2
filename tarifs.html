@@ -238,7 +238,7 @@
     });
   
     // Parallax and global reveal
-    document.querySelectorAll("section:not(.reveal)").forEach(el => {
+    document.querySelectorAll("section:not(.reveal):not(#les-tarifs)").forEach(el => {
       el.classList.add("reveal");
       observer.observe(el);
     });

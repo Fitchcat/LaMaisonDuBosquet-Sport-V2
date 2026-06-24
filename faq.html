@@ -66,7 +66,7 @@
     </div>
   </section>
 
-  <section class="container" style="margin-bottom: 8rem;">
+  <section id="les-faqs" class="container" style="margin-bottom: 8rem;">
     <!-- Barre de recherche FAQ -->
     <div class="faq-search-container" style="max-width: 600px; margin: 0 auto 3rem auto;">
       <input type="text" id="faq-search" placeholder="Tapez votre question (ex: annulation, tenue, réservation...)" style="width: 100%; padding: 1.2rem 1.5rem; border-radius: 30px; border: 1px solid var(--color-border); font-size: 1.1rem; background: var(--color-white); box-shadow: 0 4px 15px rgba(0,0,0,0.03); outline: none; transition: border-color 0.3s ease;">
@@ -294,7 +294,7 @@
     }
 
     // Parallax and global reveal
-    document.querySelectorAll("section:not(.reveal)").forEach(el => {
+    document.querySelectorAll("section:not(.reveal):not(#les-faqs)").forEach(el => {
       el.classList.add("reveal");
       observer.observe(el);
     });
