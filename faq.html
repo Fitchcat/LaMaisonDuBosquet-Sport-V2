@@ -73,36 +73,11 @@
       <p id="faq-no-result" style="display: none; text-align: center; color: var(--color-text-light); margin-top: 1rem; font-style: italic;">Aucune réponse trouvée. N'hésitez pas à nous <a href="contact.html" style="text-decoration: underline;">contacter</a> !</p>
     </div>
 
-    <div class="faq-accordion">
-      
-      <div class="faq-item">
-        <button class="faq-question">Que dois-je apporter pour mon premier cours ? <span class="faq-icon">+</span></button>
-        <div class="faq-answer">
-          <p>Une tenue confortable permettant une grande liberté de mouvement. Nous fournissons les tapis, accessoires et tout le matériel nécessaire à la pratique. Vous pouvez apporter une gourde et une serviette si vous le souhaitez.</p>
-        </div>
+    <div class="faq-accordion" id="dynamic-faq-container">
+      <div style="text-align: center; padding: 3rem; color: var(--color-text-light);">
+        <div style="border: 3px solid #f3f3f3; border-top: 3px solid var(--color-primary); border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 0 auto 1rem auto;"></div>
+        Chargement des questions...
       </div>
-      
-      <div class="faq-item">
-        <button class="faq-question">Comment réserver une séance ? <span class="faq-icon">+</span></button>
-        <div class="faq-answer">
-          <p>Toutes les réservations se font via notre plateforme en ligne BSport, accessible depuis le bouton "RÉSERVER" sur ce site. Il vous suffit de créer un compte et de choisir le créneau qui vous convient.</p>
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <button class="faq-question">Je suis débutant, quel cours me conseillez-vous ? <span class="faq-icon">+</span></button>
-        <div class="faq-answer">
-          <p>Tous nos cours sont adaptés à tous les niveaux. Nos effectifs réduits permettent à nos professeurs d'adapter les options à chaque participant. N'hésitez pas à mentionner que vous débutez en arrivant !</p>
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <button class="faq-question">Quelles sont vos conditions d'annulation ? <span class="faq-icon">+</span></button>
-        <div class="faq-answer">
-          <p>Vous pouvez annuler sans frais jusqu'à 24h avant le début du cours ou du massage. Au-delà, la séance sera facturée ou décomptée de votre carte.</p>
-        </div>
-      </div>
-
     </div>
   </section>
   <!-- FOOTER -->
@@ -185,27 +160,63 @@
     });
   
     
-    // FAQ Accordion
-    document.querySelectorAll('.faq-question').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.parentElement;
-        const isActive = item.classList.contains('active');
-        
-        // Close all other items
-        document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
-        
-        if (!isActive) {
-          item.classList.add('active');
-        }
+    // Supabase Configuration
+    const supabaseUrl = 'https://sroblumotqhimuucoelp.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNyb2JsdW1vdHFoaW11dWNvZWxwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIyODk1NzIsImV4cCI6MjA5Nzg2NTU3Mn0.Qw8rxnHF1Fmv89Voohkw_cwnfILRYx2CFy9hLOzGX20';
+    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+    // Load FAQ Dynamically
+    async function loadFaqs() {
+      const container = document.getElementById('dynamic-faq-container');
+      const { data, error } = await supabase.from('faq').select('*').order('id', { ascending: true });
+      
+      if (error) {
+        container.innerHTML = `<p style="text-align:center; color:red;">Erreur de chargement de la FAQ.</p>`;
+        return;
+      }
+      
+      container.innerHTML = ''; // Clear loader
+      
+      if (data.length === 0) {
+        container.innerHTML = `<p style="text-align:center; color: var(--color-text-light);">Aucune question pour le moment.</p>`;
+        return;
+      }
+
+      data.forEach(faq => {
+        const item = document.createElement('div');
+        item.className = 'faq-item';
+        item.innerHTML = `
+          <button class="faq-question">${faq.question} <span class="faq-icon">+</span></button>
+          <div class="faq-answer">
+            <p>${faq.answer.replace(/\n/g, '<br>')}</p>
+          </div>
+        `;
+        container.appendChild(item);
       });
-    });
+
+      // Attach Accordion Events to new elements
+      document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = btn.parentElement;
+          const isActive = item.classList.contains('active');
+          document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
+          if (!isActive) item.classList.add('active');
+        });
+      });
+      
+      // Setup Search Bar logic on dynamically loaded elements
+      setupSearch();
+    }
+
+    // Call load on page start
+    loadFaqs();
 
     // FAQ Intelligent Search
-    const searchInput = document.getElementById('faq-search');
-    const faqItems = document.querySelectorAll('.faq-item');
-    const noResultMsg = document.getElementById('faq-no-result');
+    function setupSearch() {
+      const searchInput = document.getElementById('faq-search');
+      
+      if(!searchInput) return;
 
-    if(searchInput) {
       // Focus effect
       searchInput.addEventListener('focus', () => {
         searchInput.style.borderColor = 'var(--color-accent)';
@@ -218,6 +229,10 @@
         const term = e.target.value.toLowerCase().trim();
         let hasVisibleItems = false;
         
+        // Fetch items dynamically in case they were just loaded
+        const faqItems = document.querySelectorAll('.faq-item');
+        const noResultMsg = document.getElementById('faq-no-result');
+
         faqItems.forEach(item => {
           const question = item.querySelector('.faq-question').textContent.toLowerCase();
           const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
