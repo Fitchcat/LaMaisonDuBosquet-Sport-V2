@@ -389,6 +389,7 @@ section {
   height: 70vh; /* Photos très verticales façon mode */
   position: relative;
   overflow: hidden;
+  border-radius: 5px;
 }
 
 @media (min-width: 1024px) {
@@ -458,6 +459,7 @@ section {
   padding: 0 var(--container-px);
   position: relative;
   overflow: hidden;
+  border-radius: 5px;
 }
 
 .large-image-break img {
@@ -805,7 +807,7 @@ html, body, div[id^="bsport-widget"] {
   position: relative;
   width: 100%;
   aspect-ratio: 3/4;
-  border-radius: 20px;
+  border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
