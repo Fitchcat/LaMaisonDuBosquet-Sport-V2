@@ -122,6 +122,7 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     // Reveal Animations
     const observer = new IntersectionObserver((entries) => {
@@ -163,12 +164,12 @@
     // Supabase Configuration
     const supabaseUrl = 'https://sroblumotqhimuucoelp.supabase.co';
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNyb2JsdW1vdHFoaW11dWNvZWxwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIyODk1NzIsImV4cCI6MjA5Nzg2NTU3Mn0.Qw8rxnHF1Fmv89Voohkw_cwnfILRYx2CFy9hLOzGX20';
-    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+    const supa = supabase.createClient(supabaseUrl, supabaseKey);
 
     // Load FAQ Dynamically
     async function loadFaqs() {
       const container = document.getElementById('dynamic-faq-container');
-      const { data, error } = await supabase.from('faq').select('*').order('id', { ascending: true });
+      const { data, error } = await supa.from('faq').select('*').order('id', { ascending: true });
       
       if (error) {
         container.innerHTML = `<p style="text-align:center; color:red;">Erreur de chargement de la FAQ.</p>`;
