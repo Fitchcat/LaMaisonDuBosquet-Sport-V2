@@ -122,7 +122,7 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
   <script>
     // Reveal Animations
     const observer = new IntersectionObserver((entries) => {
@@ -161,52 +161,61 @@
     });
   
     
-    // Supabase Configuration
-    const supabaseUrl = 'https://sroblumotqhimuucoelp.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNyb2JsdW1vdHFoaW11dWNvZWxwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIyODk1NzIsImV4cCI6MjA5Nzg2NTU3Mn0.Qw8rxnHF1Fmv89Voohkw_cwnfILRYx2CFy9hLOzGX20';
-    const supa = supabase.createClient(supabaseUrl, supabaseKey);
+    // Google Sheets CSV URL
+    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRxMYmyUgs53eMH1WouqeTKfyfOKHQ1gokVU6cTJohoklE4FMyXggZf_z7DiVqQnmH6ID-NVu-cQ1kn/pub?output=csv';
 
     // Load FAQ Dynamically
-    async function loadFaqs() {
+    function loadFaqs() {
       const container = document.getElementById('dynamic-faq-container');
-      const { data, error } = await supa.from('faq').select('*').order('id', { ascending: true });
       
-      if (error) {
-        container.innerHTML = `<p style="text-align:center; color:red;">Erreur de chargement de la FAQ.</p>`;
-        return;
-      }
-      
-      container.innerHTML = ''; // Clear loader
-      
-      if (data.length === 0) {
-        container.innerHTML = `<p style="text-align:center; color: var(--color-text-light);">Aucune question pour le moment.</p>`;
-        return;
-      }
+      Papa.parse(csvUrl, {
+        download: true,
+        header: true,
+        complete: function(results) {
+          const data = results.data;
+          container.innerHTML = ''; // Clear loader
+          
+          // Filter out completely empty rows
+          const validData = data.filter(row => row.Question && row.Question.trim() !== '');
 
-      data.forEach(faq => {
-        const item = document.createElement('div');
-        item.className = 'faq-item';
-        item.innerHTML = `
-          <button class="faq-question">${faq.question} <span class="faq-icon">+</span></button>
-          <div class="faq-answer">
-            <p>${faq.answer.replace(/\n/g, '<br>')}</p>
-          </div>
-        `;
-        container.appendChild(item);
-      });
+          if (validData.length === 0) {
+            container.innerHTML = `<p style="text-align:center; color: var(--color-text-light);">Aucune question pour le moment.</p>`;
+            return;
+          }
 
-      // Attach Accordion Events to new elements
-      document.querySelectorAll('.faq-question').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const item = btn.parentElement;
-          const isActive = item.classList.contains('active');
-          document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
-          if (!isActive) item.classList.add('active');
-        });
+          validData.forEach(faq => {
+            const question = faq.Question || faq.question || faq[Object.keys(faq)[0]];
+            const answer = faq['Réponse'] || faq.Reponse || faq.answer || faq[Object.keys(faq)[1]];
+            
+            const item = document.createElement('div');
+            item.className = 'faq-item';
+            item.innerHTML = `
+              <button class="faq-question">${question} <span class="faq-icon">+</span></button>
+              <div class="faq-answer">
+                <p>${answer.replace(/\n/g, '<br>')}</p>
+              </div>
+            `;
+            container.appendChild(item);
+          });
+
+          // Attach Accordion Events to new elements
+          document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const item = btn.parentElement;
+              const isActive = item.classList.contains('active');
+              document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
+              if (!isActive) item.classList.add('active');
+            });
+          });
+          
+          // Setup Search Bar logic on dynamically loaded elements
+          setupSearch();
+        },
+        error: function(error) {
+          container.innerHTML = `<p style="text-align:center; color:red;">Erreur de chargement de la FAQ.</p>`;
+          console.error("Erreur PapaParse:", error);
+        }
       });
-      
-      // Setup Search Bar logic on dynamically loaded elements
-      setupSearch();
     }
 
     // Call load on page start
