@@ -6,6 +6,9 @@
   <title>Tarifs | La Maison du Bosquet</title>
   <meta name="description" content="Découvrez nos tarifs et offres pour les cours de Pilates, Yoga et nos autres services à La Maison du Bosquet.">
   
+  
+  <link rel="preconnect" href="https://docs.google.com" crossorigin>
+  <link rel="preconnect" href="https://doc-0o-0k-sheets.googleusercontent.com" crossorigin>
   <link rel="stylesheet" href="style.css">
   <style>
     /* Tarifs Cards Styles */
@@ -275,7 +278,7 @@
           // Render categories and cards
           for (const [category, items] of Object.entries(groupedData)) {
             const catSection = document.createElement('div');
-            catSection.className = 'tarifs-category reveal';
+            catSection.className = 'tarifs-category';
             
             const catTitle = document.createElement('h3');
             catTitle.textContent = category;
@@ -309,7 +312,7 @@
           }
 
           // Re-trigger observer for new elements
-          document.querySelectorAll('.tarifs-category').forEach(el => observer.observe(el));
+          
         },
         error: function(error) {
           container.innerHTML = `<p style="text-align:center; color:red;">Erreur de chargement des tarifs.</p>`;
