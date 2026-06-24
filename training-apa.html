@@ -66,6 +66,29 @@
     </div>
   </section>
 
+    <!-- EDITORIAL SPLIT REVERSE: APA CAROUSEL -->
+  <section class="editorial-split reverse container" style="padding-top: 5rem;">
+    <div class="editorial-img reveal">
+      <div class="carousel-apa">
+        <!-- NOTE: Photos LIEU 04, LIEU 05 et APA 08 étaient introuvables. Remplacées par des alternatives -->
+        <img src="Photos/APA/APA04.png" class="carousel-slide active" alt="APA 04">
+        <img src="Photos/LIEU/Lieu03.jpg" class="carousel-slide" alt="Lieu 03">
+        <img src="Photos/APA/APA06.jpg" class="carousel-slide" alt="APA 06">
+        <img src="Photos/LIEU/lieu02.jpg" class="carousel-slide" alt="Lieu 02">
+        <img src="Photos/APA/APA07.jpg" class="carousel-slide" alt="APA 07">
+        <img src="Photos/LIEU/DSC01524.jpg" class="carousel-slide" alt="Lieu 05 alternative">
+      </div>
+    </div>
+    <div class="editorial-content reveal">
+      <span class="sur-titre">La Pratique</span>
+      <h2>Activité Physique Adaptée (APA)</h2>
+      <p style="margin-bottom: 1.5rem;">L’Activité Physique Adaptée est conçue pour répondre aux besoins, aux capacités et aux objectifs de chacun, quel que soit l’âge ou la condition physique.</p>
+      <p style="margin-bottom: 1.5rem;">À la Maison du Bosquet de Carnon, nous proposons des séances dans un cadre sécurisé, bienveillant et convivial, afin de préserver la mobilité, renforcer l’autonomie, améliorer l’équilibre et contribuer au bien-être physique et moral.</p>
+      <p style="margin-bottom: 1.5rem;"><strong>Les activités proposées incluent :</strong> Circuit Training, reprise course à pied, Handi APA, marche, prévention des chutes, Bosq’Hyrox et réathlétisation.</p>
+      <p>Que vous souhaitiez reprendre une activité, accompagner une rééducation, améliorer votre condition physique ou simplement rester actif, notre programme d’APA vous accompagne à votre rythme.</p>
+    </div>
+  </section>
+
   <!-- EDITORIAL SPLIT -->
   <section class="editorial-split container">
     <div class="editorial-img reveal">
@@ -233,6 +256,20 @@
       }
     });
   
+    
+    // Carousel APA
+    setInterval(() => {
+      const slides = document.querySelectorAll('.carousel-slide');
+      if (slides.length > 0) {
+        let activeIdx = Array.from(slides).findIndex(s => s.classList.contains('active'));
+        if (activeIdx !== -1) {
+          slides[activeIdx].classList.remove('active');
+          activeIdx = (activeIdx + 1) % slides.length;
+          slides[activeIdx].classList.add('active');
+        }
+      }
+    }, 3500);
+
     // Parallax and global reveal
     document.querySelectorAll("section:not(.reveal)").forEach(el => {
       el.classList.add("reveal");
