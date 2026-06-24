@@ -181,7 +181,7 @@
     async function loadFaqs() {
       const container = document.getElementById('dynamic-faq-container');
       try {
-        const response = await fetch(csvUrl + '&t=' + new Date().getTime(), { cache: 'no-store' });
+        const response = await fetch(csvUrl + '?t=' + new Date().getTime(), { cache: 'no-store' });
         if (!response.ok) throw new Error('Network error');
         const csvText = await response.text();
         
