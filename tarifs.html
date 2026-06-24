@@ -7,6 +7,78 @@
   <meta name="description" content="Découvrez nos tarifs et offres pour les cours de Pilates, Yoga et nos autres services à La Maison du Bosquet.">
   
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Tarifs Cards Styles */
+    .tarifs-category {
+      margin-top: 4rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+    .tarifs-category h3 {
+      font-size: 2rem;
+      color: var(--color-primary);
+      border-bottom: 2px solid var(--color-accent);
+      padding-bottom: 0.5rem;
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+    .tarifs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .tarif-card {
+      background: var(--color-white);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      border: 1px solid var(--color-border);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .tarif-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+      border-color: var(--color-accent);
+    }
+    .tarif-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 4px;
+      background: var(--color-accent);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      transform-origin: left;
+    }
+    .tarif-card:hover::before {
+      transform: scaleX(1);
+    }
+    .tarif-title {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--color-text);
+      font-weight: 500;
+    }
+    .tarif-price {
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+    }
+    .tarif-desc {
+      font-size: 0.95rem;
+      color: var(--color-text-light);
+      margin-bottom: 2rem;
+      flex-grow: 1;
+    }
+    .tarif-btn {
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
 
@@ -74,8 +146,11 @@
       <h2>Choisissez votre formule</h2>
     </div>
     
-    <div style="border: 1px solid var(--color-border); padding: 5rem 2rem; text-align: center; max-width: 900px; margin: 0 auto; background: var(--color-white); border-radius: 30px;">
-      <p style="font-family: var(--font-heading); font-size: 1.5rem;">[Intégration du widget de tarifs BSport ou Grille de tarifs à venir]</p>
+    <div id="dynamic-tarifs-container" style="max-width: 1000px; margin: 0 auto;">
+      <div style="text-align: center; padding: 3rem; color: var(--color-text-light);">
+        <div style="border: 3px solid #f3f3f3; border-top: 3px solid var(--color-primary); border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 0 auto 1rem auto;"></div>
+        Chargement des tarifs...
+      </div>
     </div>
   </section>
 
@@ -125,6 +200,7 @@
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
   <script>
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -163,6 +239,84 @@
       observer.observe(el);
     });
 
+    // Google Sheets CSV URL for Tarifs
+    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRxMYmyUgs53eMH1WouqeTKfyfOKHQ1gokVU6cTJohoklE4FMyXggZf_z7DiVqQnmH6ID-NVu-cQ1kn/pub?gid=1740182240&single=true&output=csv';
+
+    // Load Tarifs Dynamically
+    function loadTarifs() {
+      const container = document.getElementById('dynamic-tarifs-container');
+      
+      Papa.parse(csvUrl, {
+        download: true,
+        header: true,
+        complete: function(results) {
+          const data = results.data;
+          container.innerHTML = ''; // Clear loader
+          
+          // Filter out completely empty rows
+          const validData = data.filter(row => row.Categorie && row.Categorie.trim() !== '');
+
+          if (validData.length === 0) {
+            container.innerHTML = `<p style="text-align:center; color: var(--color-text-light);">Aucun tarif disponible pour le moment.</p>`;
+            return;
+          }
+
+          // Group by category
+          const groupedData = {};
+          validData.forEach(row => {
+            const cat = row.Categorie.trim();
+            if (!groupedData[cat]) {
+              groupedData[cat] = [];
+            }
+            groupedData[cat].push(row);
+          });
+
+          // Render categories and cards
+          for (const [category, items] of Object.entries(groupedData)) {
+            const catSection = document.createElement('div');
+            catSection.className = 'tarifs-category reveal';
+            
+            const catTitle = document.createElement('h3');
+            catTitle.textContent = category;
+            catSection.appendChild(catTitle);
+
+            const grid = document.createElement('div');
+            grid.className = 'tarifs-grid';
+
+            items.forEach(item => {
+              const card = document.createElement('div');
+              card.className = 'tarif-card';
+              
+              const titre = item.Titre || '';
+              const prix = item.Prix || '';
+              const valide = item.Valide || item.Description || '';
+              const btnTexte = item.BoutonTexte || 'Réserver';
+              const lien = item.Lien || '#';
+
+              card.innerHTML = `
+                <div class="tarif-title">${titre}</div>
+                <div class="tarif-price">${prix}</div>
+                <div class="tarif-desc">${valide}</div>
+                <a href="${lien}" target="_blank" class="btn btn-outline tarif-btn">${btnTexte}</a>
+              `;
+              grid.appendChild(card);
+            });
+
+            catSection.appendChild(grid);
+            container.appendChild(catSection);
+          }
+
+          // Re-trigger observer for new elements
+          document.querySelectorAll('.tarifs-category').forEach(el => observer.observe(el));
+        },
+        error: function(error) {
+          container.innerHTML = `<p style="text-align:center; color:red;">Erreur de chargement des tarifs.</p>`;
+          console.error("Erreur PapaParse:", error);
+        }
+      });
+    }
+
+    loadTarifs();
 
   </script>
 </body>
