@@ -35,7 +35,7 @@
   <div id="login-screen">
     <div id="login-box">
       <img src="Branding/LogoVert.png" alt="Logo" style="height: 60px; margin-bottom: 2rem;">
-      <h2 style="margin-bottom: 1.5rem; color: var(--color-text);">Administration</h2>
+      <h2 style="margin-bottom: 1.5rem; color: var(--color-text); font-size: clamp(1.5rem, 6vw, 2rem);">Administration</h2>
       <p style="margin-bottom: 1.5rem; color: var(--color-text-light); font-size: 0.9rem;">Espace sécurisé pour gérer les questions de la FAQ.</p>
       <input type="password" id="admin-pwd" placeholder="Mot de passe" style="padding: 1rem; width: 100%; border-radius: 10px; border: 1px solid var(--color-border); margin-bottom: 1rem; outline: none;">
       <button class="btn btn-primary" style="width: 100%;" onclick="checkPwd()">Se connecter</button>
@@ -68,7 +68,7 @@
   <script>
     const supabaseUrl = 'https://sroblumotqhimuucoelp.supabase.co';
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNyb2JsdW1vdHFoaW11dWNvZWxwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIyODk1NzIsImV4cCI6MjA5Nzg2NTU3Mn0.Qw8rxnHF1Fmv89Voohkw_cwnfILRYx2CFy9hLOzGX20';
-    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+    const supa = supabase.createClient(supabaseUrl, supabaseKey);
 
     // Permettre la validation par touche "Entrée"
     document.getElementById('admin-pwd').addEventListener('keypress', function (e) {
@@ -91,7 +91,7 @@
 
     async function loadFaqs() {
       const listEl = document.getElementById('faq-list');
-      const { data, error } = await supabase.from('faq').select('*').order('id', { ascending: false });
+      const { data, error } = await supa.from('faq').select('*').order('id', { ascending: false });
       
       if (error) {
         listEl.innerHTML = `<p style="color:#ff4757;">Erreur de chargement de la base de données: ${error.message}</p>`;
@@ -141,10 +141,10 @@
 
       try {
         if (id) {
-          const { error } = await supabase.from('faq').update({ question, answer }).eq('id', id);
+          const { error } = await supa.from('faq').update({ question, answer }).eq('id', id);
           if (error) throw error;
         } else {
-          const { error } = await supabase.from('faq').insert([{ question, answer }]);
+          const { error } = await supa.from('faq').insert([{ question, answer }]);
           if (error) throw error;
         }
 
@@ -172,7 +172,7 @@
 
     async function deleteFaq(id) {
       if(confirm('Êtes-vous sûr de vouloir supprimer définitivement cette question ?')) {
-        const { error } = await supabase.from('faq').delete().eq('id', id);
+        const { error } = await supa.from('faq').delete().eq('id', id);
         if (error) alert("Erreur : " + error.message);
         else loadFaqs();
       }
