@@ -288,10 +288,10 @@
               const card = document.createElement('div');
               card.className = 'tarif-card';
               
-              const titre = item.Titre || '';
+              let titre = item.Titre || '';
+              titre = titre.replace(/:\s*/g, ' :<br>');
               const prix = item.Prix || '';
-              let valide = item.Valide || item.Description || '';
-              valide = valide.replace(/:\s*/g, ':<br>');
+              const valide = item.Valide || item.Description || '';
               const btnTexte = item.BoutonTexte || 'Réserver';
               const lien = item.Lien || '#';
 
