@@ -310,6 +310,26 @@
               catSection.appendChild(grid);
               container.appendChild(catSection);
             }
+
+            // Faire défiler jusqu'à l'ancre si présente
+            if (window.location.hash) {
+              setTimeout(() => {
+                try {
+                  const element = document.querySelector(window.location.hash);
+                  if (element) {
+                    const headerOffset = 100; // hauteur du header fixe
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: "smooth"
+                    });
+                  }
+                } catch (e) {
+                  console.error("Erreur de défilement vers l'ancre:", e);
+                }
+              }, 100);
+            }
           },
           error: function(error) {
             container.innerHTML = `<p style="text-align:center; color:red;">Erreur d'analyse des tarifs.</p>`;
