@@ -62,7 +62,6 @@
     <div class="container text-center reveal" style="margin-top: -5rem; position: relative; z-index: 2; background: var(--color-bg); padding: 4rem 2rem; max-width: 900px; border-radius: 30px;">
       <h1>Massages & Soins</h1>
       <p style="margin: 2rem auto 3rem;">Une parenthèse hors du temps pour relâcher les tensions, retrouver l'harmonie et rééquilibrer votre énergie vitale.</p>
-      <a href="#planning" class="btn btn-primary">RÉSERVER</a>
     </div>
   </section>
 
@@ -130,46 +129,7 @@
     </div>
   </section>
 
-    <!-- WIDGET PLANNING -->
-  <section id="planning" class="container reveal" style="margin-top: 3rem;">
-    <div class="text-center mb-4">
-      <span class="sur-titre">Réservation</span>
-      <h2>BIEN-ÊTRE DÉTENTE</h2>
-    </div>
-    
-    <div id="bsport-widget-101383" style="max-width: 1200px; margin: 0 auto; max-height: 650px; overflow-y: auto; overflow-x: hidden;"></div>
-    
-    <script id="insert-bsport-widget-cdn">!function (b, s, p, o, r, t) { typeof window.BsportWidget === "undefined" && !document.getElementById("bsport-widget-cdn") && !function () { m = b.createElement(s), m.id = "bsport-widget-cdn", m.src = p, b.getElementsByTagName("head")[0].appendChild(m) }() }(document, "script", "https://cdn.bsport.io/scripts/widget.js")</script>
-    <script id="bsport-widget-mount">
-        function MountBsportWidget(config, repeat=1) {
-            if (repeat > 50) { return }
-            if (!window.BsportWidget) {
-                return setTimeout(() => {
-                    MountBsportWidget(config,repeat+1)
-                }, 100 * repeat || 1)
-            }
-            BsportWidget.mount(config)
-        }
-    </script>
-    <script>
-        MountBsportWidget({
-                "parentElement": "bsport-widget-101383",
-                "companyId": 2561,
-                "franchiseId": null,
-                "dialogMode": 1,
-                "widgetType": "privateService", 
-                "showFab": false,
-                "fullScreenPopup": false,
-                "styles":undefined,
-                "config": {
-                    "privateService": {                "type": "list",
-                "privateGroups": [
-                    4347
-                ]}
-                }  
-            })
-    </script>
-  </section>
+
 
   
 
