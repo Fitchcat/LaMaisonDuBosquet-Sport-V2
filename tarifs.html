@@ -278,6 +278,7 @@
             for (const [category, items] of Object.entries(groupedData)) {
               const catSection = document.createElement('div');
               catSection.className = 'tarifs-category';
+              catSection.id = category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
               
               const catTitle = document.createElement('h3');
               catTitle.textContent = category;
