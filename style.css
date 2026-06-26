@@ -111,8 +111,10 @@ a {
   transition: opacity var(--transition-fast);
 }
 
-a:hover {
-  opacity: 0.6;
+@media (hover: hover) {
+  a:hover {
+    opacity: 0.6;
+  }
 }
 
 ul {
@@ -201,12 +203,20 @@ section {
   color: var(--color-white);
 }
 
-.main-nav a:hover,
 .main-nav a.active {
   color: #caa77a !important;
   text-decoration: underline;
   text-underline-offset: 4px;
   opacity: 1;
+}
+
+@media (hover: hover) {
+  .main-nav a:hover {
+    color: #caa77a !important;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    opacity: 1;
+  }
 }
 
 /* ==========================================================================
@@ -230,9 +240,11 @@ section {
   border-radius: 50px; /* Boutons totalement arrondis */
 }
 
-.btn:hover {
-  background: #caa77a;
-  color: var(--color-white);
+@media (hover: hover) {
+  .btn:hover {
+    background: #caa77a;
+    color: var(--color-white);
+  }
 }
 
 /* Le bouton principal prend l'accent Terracotta demandé */
@@ -242,9 +254,11 @@ section {
   color: var(--color-white);
 }
 
-.btn-primary:hover {
-  background: transparent;
-  color: var(--color-accent);
+@media (hover: hover) {
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--color-accent);
+  }
 }
 
 /* ==========================================================================
