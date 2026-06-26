@@ -409,6 +409,12 @@ section {
   width: 100%;
 }
 
+@media (max-width: 768px) {
+  .editorial-content .btn {
+    margin-bottom: 20px;
+  }
+}
+
 @media (min-width: 1024px) {
   .editorial-content {
     width: 55%;
