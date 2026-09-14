@@ -122,58 +122,9 @@
     </div>
     
     <div style="overflow:hidden !important; position:relative; padding-top:125vh;">
-      <iframe style="position:absolute; 
-              overflow-x:hidden !important; 
-              height:100%; width:100%; 
-              left:0;
-              top:0;
-              border:0;" 
-              frameborder="0" 
-              allowfullscreen 
-              srcdoc='
-                      <script id="insert-bsport-widget-cdn">!function (b, s, p, o, r, t) { typeof window.BsportWidget === "undefined" && !document.getElementById("bsport-widget-cdn") && !function () { m = b.createElement(s), m.id = "bsport-widget-cdn", m.src = p, b.getElementsByTagName("head")[0].appendChild(m) }() }(document, "script", "https://cdn.bsport.io/scripts/widget.js")</script>
-                        <script id="bsport-widget-mount">
-                            function MountBsportWidget(config, repeat=1) {
-                                if (repeat > 50) { return }
-                                if (!window.BsportWidget) {
-                                    return setTimeout(() => {
-                                        MountBsportWidget(config,repeat+1)
-                                    }, 100 * repeat || 1)
-                                }
-                                BsportWidget.mount(config)
-                            }
-                        </script>
-                        <script>
-                            MountBsportWidget({
-                                    "parentElement": "bsport-widget-644406",
-                                    "companyId": 2561,
-                                    "franchiseId": null,
-                                    "dialogMode": 0,
-                                    "widgetType": "calendar", 
-                                    "showFab": false,
-                                    "fullScreenPopup": false,
-                                    "styles":undefined,
-                                    "config": {
-                                        "calendar": {                "coaches": [],
-                                    "establishments": [
-                                        9788,
-                                        9787,
-                                        9790
-                                    ],
-                                    "metaActivities": [
-                                        122707
-                                    ],
-                                    "levels": [],
-                                    "variant": null,
-                                    "groupSessionByPeriod": true,
-                                    "todayOnly": false,
-                                    "cardMode": null,
-                                    "establishmentGroups": []}
-                                    }  
-                                })
-                        </script>
-                    <div id="bsport-widget-644406"></div>
-    '>
+      <iframe src="https://backoffice.bsport.io/m/Maison%20du%20Bosquet/2561/calendar/?isPreview=true&activity__in=122707&establishments=9788,9787,9790"
+              style="position:absolute; overflow-x:hidden !important; height:100%; width:100%; left:0; top:0; border:0;"
+              frameborder="0" allowfullscreen>
       </iframe>
     </div>
   </section>
