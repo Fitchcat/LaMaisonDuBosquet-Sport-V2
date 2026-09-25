@@ -107,7 +107,10 @@
         }
     </script>
     <script>
-        MountBsportWidget({
+        let currentCardMode = window.innerWidth >= 768;
+        
+        function renderBsport() {
+            MountBsportWidget({
                 "parentElement": "bsport-widget-648123",
                 "companyId": 2561,
                 "franchiseId": null,
@@ -118,7 +121,7 @@
                 "styles": undefined,
                 "config": {
                     "calendar": {
-                        "cardMode": null,
+                        "cardMode": currentCardMode,
                         "metaActivities": [
                             122707
                         ],
@@ -130,7 +133,19 @@
                         "establishmentGroups": []
                     }
                 }  
-            })
+            });
+        }
+        
+        renderBsport();
+        
+        window.addEventListener("resize", () => {
+            const isDesktop = window.innerWidth >= 768;
+            if (isDesktop !== currentCardMode) {
+                currentCardMode = isDesktop;
+                document.getElementById("bsport-widget-648123").innerHTML = "";
+                renderBsport();
+            }
+        });
     </script>
     <div id="bsport-widget-648123"></div>
 </body>
