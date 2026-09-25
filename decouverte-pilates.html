@@ -78,22 +78,13 @@
   </section>
 
   <!-- WIDGET PLANNING ESSAI -->
-  <section id="planning-essai" class="container reveal" style="margin-bottom: 5rem;">
+  <section id="planning-essai" class="container" style="margin-bottom: 5rem; min-height: 125vh;">
     <!-- 
       ========================================================
       VOTRE WIDGET ICI
       Insérez le code du widget pour les séances d'essai ci-dessous
       ======================================================== 
     -->
-<div style="overflow:hidden !important; position:relative; padding-top:125vh;">
-  <iframe style="position:absolute; overflow-x:hidden !important; height:100%; width:100%; left:0; top:0; border:0;" frameborder="0" allowfullscreen srcdoc='<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>body { margin: 0; padding: 0; overflow-x: hidden; }</style>
-</head>
-<body>
     <script id="insert-bsport-widget-cdn">!function (b, s, p, o, r, t) { typeof window.BsportWidget === "undefined" && !document.getElementById("bsport-widget-cdn") && !function () { m = b.createElement(s), m.id = "bsport-widget-cdn", m.src = p, b.getElementsByTagName("head")[0].appendChild(m) }() }(document, "script", "https://cdn.bsport.io/scripts/widget.js")</script>
     <script id="bsport-widget-mount">
         function MountBsportWidget(config, repeat=1) {
@@ -107,10 +98,7 @@
         }
     </script>
     <script>
-        let currentCardMode = window.innerWidth >= 768;
-        
-        function renderBsport() {
-            MountBsportWidget({
+        MountBsportWidget({
                 "parentElement": "bsport-widget-648123",
                 "companyId": 2561,
                 "franchiseId": null,
@@ -121,7 +109,7 @@
                 "styles": undefined,
                 "config": {
                     "calendar": {
-                        "cardMode": currentCardMode,
+                        "cardMode": null,
                         "metaActivities": [
                             122707
                         ],
@@ -134,24 +122,8 @@
                     }
                 }  
             });
-        }
-        
-        renderBsport();
-        
-        window.addEventListener("resize", () => {
-            const isDesktop = window.innerWidth >= 768;
-            if (isDesktop !== currentCardMode) {
-                currentCardMode = isDesktop;
-                document.getElementById("bsport-widget-648123").innerHTML = "";
-                renderBsport();
-            }
-        });
     </script>
-    <div id="bsport-widget-648123"></div>
-</body>
-</html>'>
-  </iframe>
-</div>
+    <div id="bsport-widget-648123" style="width: 100%; position: relative;"></div>
     <!-- FIN WIDGET -->
   </section>
 
