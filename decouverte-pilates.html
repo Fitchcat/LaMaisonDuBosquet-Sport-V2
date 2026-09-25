@@ -98,7 +98,10 @@
         }
     </script>
     <script>
-        MountBsportWidget({
+        let currentCardMode = window.innerWidth >= 768;
+        
+        function renderBsport() {
+            MountBsportWidget({
                 "parentElement": "bsport-widget-648123",
                 "companyId": 2561,
                 "franchiseId": null,
@@ -106,10 +109,10 @@
                 "widgetType": "calendar", 
                 "showFab": true,
                 "fullScreenPopup": false,
-                "styles":undefined,
+                "styles": undefined,
                 "config": {
                     "calendar": {
-                        "cardMode": window.innerWidth >= 768,
+                        "cardMode": currentCardMode,
                         "metaActivities": [
                             122707
                         ],
@@ -121,7 +124,22 @@
                         "establishmentGroups": []
                     }
                 }  
-            })
+            });
+        }
+        
+        // Affichage initial
+        renderBsport();
+        
+        // Re-rendu dynamique si l'utilisateur redimensionne la fenêtre
+        window.addEventListener('resize', () => {
+            const isDesktop = window.innerWidth >= 768;
+            if (isDesktop !== currentCardMode) {
+                currentCardMode = isDesktop;
+                // On vide le conteneur pour forcer le widget à se recréer proprement
+                document.getElementById('bsport-widget-648123').innerHTML = '';
+                renderBsport();
+            }
+        });
     </script>
 <div id="bsport-widget-648123"></div>
     <!-- FIN WIDGET -->
