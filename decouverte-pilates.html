@@ -85,6 +85,14 @@
       Insérez le code du widget pour les séances d'essai ci-dessous
       ======================================================== 
     -->
+    <style>
+      .bsport-desktop-only { display: block; }
+      .bsport-mobile-only { display: none; }
+      @media (max-width: 768px) {
+        .bsport-desktop-only { display: none !important; }
+        .bsport-mobile-only { display: block !important; }
+      }
+    </style>
     <script id="insert-bsport-widget-cdn">!function (b, s, p, o, r, t) { typeof window.BsportWidget === "undefined" && !document.getElementById("bsport-widget-cdn") && !function () { m = b.createElement(s), m.id = "bsport-widget-cdn", m.src = p, b.getElementsByTagName("head")[0].appendChild(m) }() }(document, "script", "https://cdn.bsport.io/scripts/widget.js")</script>
     <script id="bsport-widget-mount">
         function MountBsportWidget(config, repeat=1) {
@@ -98,8 +106,9 @@
         }
     </script>
     <script>
+        // Instance DESKTOP forçant le mode Carte
         MountBsportWidget({
-                "parentElement": "bsport-widget-648123",
+                "parentElement": "bsport-widget-desktop",
                 "companyId": 2561,
                 "franchiseId": null,
                 "dialogMode": 0,
@@ -109,21 +118,36 @@
                 "styles": undefined,
                 "config": {
                     "calendar": {
-                        "cardMode": null,
-                        "metaActivities": [
-                            122707
-                        ],
-                        "establishments": [
-                            9788,
-                            9787,
-                            9790
-                        ],
+                        "cardMode": true,
+                        "metaActivities": [ 122707 ],
+                        "establishments": [ 9788, 9787, 9790 ],
                         "establishmentGroups": []
                     }
                 }  
-            });
+        });
+
+        // Instance MOBILE forçant le mode Liste
+        MountBsportWidget({
+                "parentElement": "bsport-widget-mobile",
+                "companyId": 2561,
+                "franchiseId": null,
+                "dialogMode": 0,
+                "widgetType": "calendar", 
+                "showFab": true,
+                "fullScreenPopup": false,
+                "styles": undefined,
+                "config": {
+                    "calendar": {
+                        "cardMode": false,
+                        "metaActivities": [ 122707 ],
+                        "establishments": [ 9788, 9787, 9790 ],
+                        "establishmentGroups": []
+                    }
+                }  
+        });
     </script>
-    <div id="bsport-widget-648123" style="width: 100%; position: relative;"></div>
+    <div id="bsport-widget-desktop" class="bsport-desktop-only" style="width: 100%; position: relative;"></div>
+    <div id="bsport-widget-mobile" class="bsport-mobile-only" style="width: 100%; position: relative;"></div>
     <!-- FIN WIDGET -->
   </section>
 
