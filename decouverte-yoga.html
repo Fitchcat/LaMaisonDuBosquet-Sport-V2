@@ -34,8 +34,10 @@
           position: fixed;
           bottom: 25px; /* Plus haut pour éviter la barre d'accueil iPhone */
           left: 50%;
-          transform: translateX(-50%) translateY(150%); /* Caché en bas par défaut */
-          transition: transform 0.3s ease-in-out;
+          transform: translateX(-50%) translateY(20px); /* Légèrement plus bas */
+          opacity: 0;
+          pointer-events: none;
+          transition: all 0.3s ease-in-out;
           width: 90%;
           z-index: 1000;
           box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -52,7 +54,9 @@
           white-space: nowrap; /* Empêche le passage à la ligne */
         }
         .mobile-sticky-cta.show-sticky-cta {
-          transform: translateX(-50%) translateY(0);
+          transform: translateX(-50%) translateY(0) !important;
+          opacity: 1 !important;
+          pointer-events: auto !important;
         }
         
         /* Masquer le CTA sticky si on est en bas pour ne pas cacher le widget ? Optionnel */
