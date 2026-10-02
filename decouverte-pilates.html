@@ -89,82 +89,44 @@
   </style>
   <section id="planning-essai" class="container" style="margin-bottom: 5rem; min-height: 125vh;">
     <!-- WIDGET PLANNING ESSAI -->
-    <div style="overflow:hidden !important; position:relative; padding-top:125vh;">
-      <iframe style="position:absolute; 
-              overflow-x:hidden !important; 
-              height:100%; width:100%; 
-              left:0;
-              top:0;
-              border:0;" 
-              frameborder="0" 
-              allowfullscreen 
-              srcdoc='
-                      <style>
-                        .bsport-desktop-only { display: block; }
-                        .bsport-mobile-only { display: none; }
-                        @media (max-width: 1000px) {
-                          .bsport-desktop-only { display: none !important; }
-                          .bsport-mobile-only { display: block !important; }
-                        }
-                        @media (max-width: 500px) {
-                            .bs-marketplace-filters__list {
-                              flex-wrap: wrap;
-                              justify-content: center;
-                            }
-                        }
-                      </style>
-                      <script id="insert-bsport-widget-cdn">!function (b, s, p, o, r, t) { typeof window.BsportWidget === "undefined" && !document.getElementById("bsport-widget-cdn") && !function () { m = b.createElement(s), m.id = "bsport-widget-cdn", m.src = p, b.getElementsByTagName("head")[0].appendChild(m) }() }(document, "script", "https://cdn.bsport.io/scripts/widget.js")</script>
-                      <script id="bsport-widget-mount">
-                          function MountBsportWidget(config, repeat=1) {
-                              if (repeat > 50) { return }
-                              if (!window.BsportWidget || !document.getElementById(config.parentElement)) {
-                                  return setTimeout(() => {
-                                      MountBsportWidget(config,repeat+1)
-                                  }, 100 * repeat || 1)
-                              }
-                              BsportWidget.mount(config)
-                          }
-                      </script>
-                      <div id="bsport-desktop" class="bsport-desktop-only"></div>
-                      <div id="bsport-mobile" class="bsport-mobile-only"></div>
-                      <script>
-                          MountBsportWidget({
-                              "parentElement": "bsport-desktop",
-                              "companyId": 2561,
-                              "franchiseId": null,
-                              "dialogMode": 3,
-                              "widgetType": "calendar",
-                              "showFab": false,
-                              "fullScreenPopup": false,
-                              "config": {
-                                  "calendar": {
-                                      "cardMode": true,
-                                      "todayOnly": false,
-                                      "metaActivities": [122707],
-                                      "establishments": [9788, 9787, 9790]
-                                  }
-                              }
-                          });
-                          MountBsportWidget({
-                              "parentElement": "bsport-mobile",
-                              "companyId": 2561,
-                              "franchiseId": null,
-                              "dialogMode": 3,
-                              "widgetType": "calendar",
-                              "showFab": false,
-                              "fullScreenPopup": false,
-                              "config": {
-                                  "calendar": {
-                                      "cardMode": false,
-                                      "todayOnly": false,
-                                      "metaActivities": [122707],
-                                      "establishments": [9788, 9787, 9790]
-                                  }
-                              }
-                          });
-                      </script>'>
-      </iframe>
-    </div>
+    <script id="insert-bsport-widget-cdn">!function (b, s, p, o, r, t) { typeof window.BsportWidget === "undefined" && !document.getElementById("bsport-widget-cdn") && !function () { m = b.createElement(s), m.id = "bsport-widget-cdn", m.src = p, b.getElementsByTagName("head")[0].appendChild(m) }() }(document, "script", "https://cdn.bsport.io/scripts/widget.js")</script>
+    <script id="bsport-widget-mount">
+        function MountBsportWidget(config, repeat=1) {
+            if (repeat > 50) { return }
+            if (!window.BsportWidget || !document.getElementById(config.parentElement)) {
+                return setTimeout(() => {
+                    MountBsportWidget(config,repeat+1)
+                }, 100 * repeat || 1)
+            }
+            BsportWidget.mount(config)
+        }
+    </script>
+    <script>
+        MountBsportWidget({
+    "parentElement": "bsport-widget-56a390b5-868a-4012-8d37-7dd3d32c7fa0",
+    "companyId": 2561,
+    "franchiseId": null,
+    "dialogMode": 1,
+    "widgetType": "calendar",
+    "showFab": false,
+    "fullScreenPopup": true,
+    "config": {
+        "calendar": {
+            "cardMode": null,
+            "todayOnly": false,
+            "metaActivities": [
+                122707
+            ],
+            "establishments": [
+                9788,
+                9787,
+                9790
+            ]
+        }
+    }
+})
+    </script>
+<div id="bsport-widget-56a390b5-868a-4012-8d37-7dd3d32c7fa0"></div>
     <!-- FIN WIDGET -->
   </section>
 
