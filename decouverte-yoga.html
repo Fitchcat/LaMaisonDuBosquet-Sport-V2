@@ -20,50 +20,51 @@
 
       gtag('config', 'G-E7MQ6MC1MP');
     </script>
+    <style id="mobile-optimizations">
+      /* Mobile First Landing Page Optimizations */
+      @media (max-width: 768px) {
+        .hero-image-wrapper { height: 40vh !important; }
+        .hero-container { padding: 2rem 1rem !important; margin-top: -3rem !important; }
+        .section-interest { padding: 3rem 1rem !important; }
+        .section-desire { padding: 3rem 1rem !important; }
+        .section-action { padding: 4rem 1rem 2rem !important; }
+        
+        /* Sticky Mobile CTA */
+        .mobile-sticky-cta {
+          position: fixed;
+          bottom: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 90%;
+          z-index: 1000;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+          font-weight: 600;
+          font-size: 1.1rem;
+        }
+        
+        /* Masquer le CTA sticky si on est en bas pour ne pas cacher le widget ? Optionnel */
+      }
+      @media (min-width: 769px) {
+        .mobile-sticky-cta { display: none !important; }
+        .hero-container { padding: 4rem 2rem; margin-top: -5rem; }
+        .section-interest { padding: 5rem 0; }
+        .section-desire { padding: 5rem 0; }
+        .section-action { padding: 8rem 0; }
+      }
+    </style>
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- HEADER (Landing page mode: no nav) -->
   <header class="site-header">
-    <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+    <div class="container" style="display: flex; justify-content: center; align-items: center; width: 100%;">
       <div class="logo">
         <a href="index.html">
           <img src="Branding/MaisonDuBosquet_logo_vectorise_blanc.svg" alt="La Maison du Bosquet">
         </a>
       </div>
-      
-      <nav class="main-nav">
-        <ul>
-          <li><a href="index.html">Accueil</a></li>
-          <li><a href="pilates.html" class="active">Pilates</a></li>
-          <li><a href="training-apa.html">Activités</a></li>
-          <li><a href="yoga.html">Yoga</a></li>
-          <li><a href="massages.html">Massages</a></li>
-          <li><a href="tarifs.html">Tarifs</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      
-      <button class="burger-btn" aria-label="Menu" aria-expanded="false">
-        <div class="burger-line"></div>
-        <div class="burger-line"></div>
-        <div class="burger-line"></div>
-      </button>
     </div>
   </header>
-
-  <!-- MOBILE MENU -->
-  <nav class="mobile-menu">
-    <a href="index.html">Accueil</a>
-    <a href="pilates.html" class="active">Pilates</a>
-    <a href="training-apa.html">Activités</a>
-    <a href="yoga.html">Yoga</a>
-    <a href="massages.html">Massages</a>
-    <a href="tarifs.html">Tarifs</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
-  </nav>
 
   <!-- [A] ATTENTION : HERO SECTION -->
   <section style="padding: 0;">
@@ -71,24 +72,25 @@
       <img src="Photos/YOGA/Yoga10.png" alt="Pratique du Yoga" style="width: 100%; height: 100%; object-fit: cover; object-position: center 60%;">
     </div>
     
-    <div class="container text-center reveal" style="margin-top: -5rem; position: relative; z-index: 2; background: var(--color-bg); padding: 4rem 2rem; max-width: 900px; border-radius: 30px;">
+    <div class="container text-center hero-container reveal" style="position: relative; z-index: 2; background: var(--color-bg); max-width: 900px; border-radius: 30px;">
       <span class="sur-titre">La Maison du Bosquet</span>
-      <h1>L'art du Yoga : Souffle, ancrage et sérénité</h1>
-      <p style="margin: 2rem auto 0; font-size: 1.2rem; max-width: 700px;">Découvrez notre pratique du Yoga (Hatha, Vinyasa, Yin) à Carnon et offrez-vous un véritable refuge contre le tumulte du quotidien.</p>
+      <h1 style="font-size: 2.5rem; line-height: 1.1; margin-bottom: 1rem;">L'art du Yoga : Souffle, ancrage et sérénité</h1>
+      <p style="margin: 0 auto 2rem; font-size: 1.1rem; max-width: 700px;">Découvrez notre pratique du Yoga (Hatha, Vinyasa, Yin) à Carnon et offrez-vous un véritable refuge contre le tumulte du quotidien.</p>
+      <a href="#planning-essai" class="btn btn-primary" style="width: 100%; max-width: 300px;">RÉSERVER À 10€</a>
     </div>
   </section>
 
   <!-- [I] INTEREST (Problem/Agitation) -->
-  <section class="container reveal" style="padding-top: 5rem; padding-bottom: 5rem;">
+  <section class="container reveal section-interest">
     <div class="editorial-content text-center" style="max-width: 800px; margin: 0 auto;">
       <span class="sur-titre">Le Constat</span>
       <h2>Avez-vous besoin de ralentir ?</h2>
-      <p style="margin-top: 2rem;">Le rythme effréné du quotidien, la charge mentale et le stress permanent finissent par vous épuiser. Vous vous sentez peut-être dispersé(e), anxieux(se) ou vous avez tout simplement oublié comment respirer profondément. <strong>Il est temps de vous accorder une véritable pause.</strong></p>
+      <p style="margin-top: 1.5rem; font-size: 1.1rem;">Le rythme effréné du quotidien, la charge mentale et le stress permanent finissent par vous épuiser. Vous vous sentez peut-être dispersé(e), anxieux(se) ou vous avez tout simplement oublié comment respirer profondément. <br><br><strong style="font-size: 1.2rem; color: var(--color-primary);">Il est temps de vous accorder une véritable pause.</strong></p>
     </div>
   </section>
 
   <!-- [D] DESIRE (Solution/Benefits) -->
-  <section style="background: var(--color-white); padding: 5rem 0;" class="reveal">
+  <section style="background: var(--color-white);" class="reveal section-desire">
     <div class="container text-center">
       <span class="sur-titre">Notre Approche</span>
       <h2>Un espace de respiration sur-mesure</h2>
@@ -112,13 +114,16 @@
   </section>
 
   <!-- [A] ACTION (Call to Action / Widget) -->
-  <section class="container reveal" style="padding-top: 8rem; text-center">
+  <section class="container reveal section-action">
     <div class="text-center mb-4">
       <span class="sur-titre">Passez à l'action</span>
       <h2>Votre première séance à 10€</h2>
-      <p style="margin: 1rem auto 3rem; max-width: 700px;">Pour vous offrir une expérience apaisante, nous limitons le nombre de participants. Choisissez la séance qui s'intègre le mieux à votre rythme dans le calendrier ci-dessous, et réservez immédiatement votre séance découverte.</p>
+      <p style="margin: 1rem auto 2rem; max-width: 700px; font-size: 1.1rem;">Pour vous offrir une expérience apaisante, nous limitons le nombre de participants. Choisissez la séance qui s'intègre le mieux à votre rythme dans le calendrier ci-dessous, et réservez immédiatement votre séance découverte.</p>
     </div>
   </section>
+  
+  <!-- BOUTON STICKY MOBILE -->
+  <a href="#planning-essai" class="btn btn-primary mobile-sticky-cta">Réserver ma séance à 10€</a>
 
   <!-- WIDGET PLANNING ESSAI -->
   <style>
