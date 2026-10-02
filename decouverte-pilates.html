@@ -79,6 +79,14 @@
 
   <!-- WIDGET PLANNING ESSAI -->
   <style>
+    /* Sur desktop, on donne plus de place au widget pour forcer le passage en mode carte */
+    @media (min-width: 1000px) {
+      #planning-essai.container {
+        max-width: 100%;
+        padding-left: 2vw;
+        padding-right: 2vw;
+      }
+    }
     @media (max-width: 768px) {
       /* Réduit le padding sur mobile pour que le widget Bsport ait la place de s'afficher sans être coupé */
       #planning-essai.container {
