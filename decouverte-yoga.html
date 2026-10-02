@@ -32,7 +32,7 @@
         /* Sticky Mobile CTA */
         .mobile-sticky-cta {
           position: fixed;
-          bottom: 20px;
+          bottom: 25px; /* Plus haut pour éviter la barre d'accueil iPhone */
           left: 50%;
           transform: translateX(-50%);
           width: 90%;
@@ -40,6 +40,13 @@
           box-shadow: 0 10px 30px rgba(0,0,0,0.3);
           font-weight: 600;
           font-size: 1.1rem;
+          background: var(--color-primary);
+          color: white !important;
+          border-radius: 50px;
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          padding: 1.2rem;
         }
         
         /* Masquer le CTA sticky si on est en bas pour ne pas cacher le widget ? Optionnel */

@@ -20,50 +20,56 @@
 
       gtag('config', 'G-E7MQ6MC1MP');
     </script>
+    <style id="mobile-optimizations">
+      /* Mobile First Landing Page Optimizations */
+      @media (max-width: 768px) {
+        .hero-image-wrapper { height: 40vh !important; }
+        .hero-container { padding: 2rem 1rem !important; margin-top: -3rem !important; }
+        .section-interest { padding: 3rem 1rem !important; }
+        .section-desire { padding: 3rem 1rem !important; }
+        .section-action { padding: 4rem 1rem 2rem !important; }
+        
+        /* Sticky Mobile CTA */
+        .mobile-sticky-cta {
+          position: fixed;
+          bottom: 25px; /* Plus haut pour éviter la barre d'accueil iPhone */
+          left: 50%;
+          transform: translateX(-50%);
+          width: 90%;
+          z-index: 1000;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+          font-weight: 600;
+          font-size: 1.1rem;
+          background: var(--color-primary);
+          color: white !important;
+          border-radius: 50px;
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          padding: 1.2rem;
+        }
+      }
+      @media (min-width: 769px) {
+        .mobile-sticky-cta { display: none !important; }
+        .hero-container { padding: 4rem 2rem; margin-top: -5rem; }
+        .section-interest { padding: 5rem 0; }
+        .section-desire { padding: 5rem 0; }
+        .section-action { padding: 8rem 0; }
+      }
+    </style>
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- HEADER (Landing page mode: no nav) -->
   <header class="site-header">
-    <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+    <div class="container" style="display: flex; justify-content: center; align-items: center; width: 100%;">
       <div class="logo">
         <a href="index.html">
           <img src="Branding/MaisonDuBosquet_logo_vectorise_blanc.svg" alt="La Maison du Bosquet">
         </a>
       </div>
-      
-      <nav class="main-nav">
-        <ul>
-          <li><a href="index.html">Accueil</a></li>
-          <li><a href="pilates.html" class="active">Pilates</a></li>
-          <li><a href="training-apa.html">Activités</a></li>
-          <li><a href="yoga.html">Yoga</a></li>
-          <li><a href="massages.html">Massages</a></li>
-          <li><a href="tarifs.html">Tarifs</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      
-      <button class="burger-btn" aria-label="Menu" aria-expanded="false">
-        <div class="burger-line"></div>
-        <div class="burger-line"></div>
-        <div class="burger-line"></div>
-      </button>
     </div>
   </header>
-
-  <!-- MOBILE MENU -->
-  <nav class="mobile-menu">
-    <a href="index.html">Accueil</a>
-    <a href="pilates.html" class="active">Pilates</a>
-    <a href="training-apa.html">Activités</a>
-    <a href="yoga.html">Yoga</a>
-    <a href="massages.html">Massages</a>
-    <a href="tarifs.html">Tarifs</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
-  </nav>
 
   <!-- [A] ATTENTION : HERO SECTION -->
   <section style="padding: 0;">
@@ -71,24 +77,25 @@
       <img src="Photos/PILATES/Pilates04.jpg" alt="Séance de Pilates" style="width: 100%; height: 100%; object-fit: cover; object-position: center 30%;">
     </div>
     
-    <div class="container text-center reveal" style="margin-top: -5rem; position: relative; z-index: 2; background: var(--color-bg); padding: 4rem 2rem; max-width: 900px; border-radius: 30px;">
+    <div class="container text-center hero-container reveal" style="position: relative; z-index: 2; background: var(--color-bg); max-width: 900px; border-radius: 30px;">
       <span class="sur-titre">La Maison du Bosquet</span>
-      <h1>Retrouvez un corps fort, souple et sans douleur</h1>
-      <p style="margin: 2rem auto 0; font-size: 1.2rem; max-width: 700px;">Découvrez notre méthode Pilates exclusive à Carnon et réappropriez-vous votre corps dans un cadre apaisant et confidentiel.</p>
+      <h1 style="font-size: 2.2rem; line-height: 1.1; margin-bottom: 1rem;">Retrouvez un corps fort, souple et sans douleur</h1>
+      <p style="margin: 0 auto 2rem; font-size: 1.1rem; max-width: 700px;">Découvrez notre méthode Pilates exclusive à Carnon et réappropriez-vous votre corps dans un cadre apaisant et confidentiel.</p>
+      <a href="#planning-essai" class="btn btn-primary" style="width: 100%; max-width: 300px;">RÉSERVER À 10€</a>
     </div>
   </section>
 
   <!-- [I] INTEREST (Problem/Agitation) -->
-  <section class="container reveal" style="padding-top: 5rem; padding-bottom: 5rem;">
+  <section class="container reveal section-interest">
     <div class="editorial-content text-center" style="max-width: 800px; margin: 0 auto;">
       <span class="sur-titre">Le Constat</span>
       <h2>Vous sentez-vous tendu(e) ou déconnecté(e) de votre corps ?</h2>
-      <p style="margin-top: 2rem;">La sédentarité, le stress et les mauvaises postures s'accumulent au fil des jours. Vous avez l'impression que votre corps ne vous suit plus, que vos articulations sont rouillées ou que des tensions chroniques vous empêchent de profiter pleinement de vos journées. <strong>Il est temps de ralentir et de prendre soin de vous.</strong></p>
+      <p style="margin-top: 1.5rem; font-size: 1.1rem;">La sédentarité, le stress et les mauvaises postures s'accumulent au fil des jours. Vous avez l'impression que votre corps ne vous suit plus, que vos articulations sont rouillées ou que des tensions chroniques vous empêchent de profiter pleinement de vos journées. <br><br><strong style="font-size: 1.2rem; color: var(--color-primary);">Il est temps de ralentir et de prendre soin de vous.</strong></p>
     </div>
   </section>
 
   <!-- [D] DESIRE (Solution/Benefits) -->
-  <section style="background: var(--color-white); padding: 5rem 0;" class="reveal">
+  <section style="background: var(--color-white);" class="reveal section-desire">
     <div class="container text-center">
       <span class="sur-titre">Notre Approche</span>
       <h2>Une méthode bienveillante et sur-mesure</h2>
@@ -112,13 +119,16 @@
   </section>
 
   <!-- [A] ACTION (Call to Action / Widget) -->
-  <section class="container reveal" style="padding-top: 8rem; text-center">
+  <section class="container reveal section-action">
     <div class="text-center mb-4">
       <span class="sur-titre">Passez à l'action</span>
       <h2>Votre première séance à 10€</h2>
-      <p style="margin: 1rem auto 3rem; max-width: 700px;">Pour vous offrir une attention privilégiée, nous proposons actuellement 3 créneaux d'essai intimistes par semaine. Sélectionnez simplement la séance qui s'intègre le mieux à votre rythme — le <strong>lundi à 10h</strong>, le <strong>mardi à 12h30</strong>, ou le <strong>mercredi à 11h</strong> — et réservez votre place ci-dessous.</p>
+      <p style="margin: 1rem auto 2rem; max-width: 700px; font-size: 1.1rem;">Pour vous offrir une attention privilégiée, nous proposons actuellement 3 créneaux d'essai intimistes par semaine. Sélectionnez simplement la séance qui s'intègre le mieux à votre rythme — le <strong>lundi à 10h</strong>, le <strong>mardi à 12h30</strong>, ou le <strong>mercredi à 11h</strong> — et réservez votre place ci-dessous.</p>
     </div>
   </section>
+  
+  <!-- BOUTON STICKY MOBILE -->
+  <a href="#planning-essai" class="btn btn-primary mobile-sticky-cta">Réserver ma séance à 10€</a>
 
   <!-- WIDGET PLANNING ESSAI -->
   <style>
