@@ -34,7 +34,8 @@
           position: fixed;
           bottom: 25px; /* Plus haut pour éviter la barre d'accueil iPhone */
           left: 50%;
-          transform: translateX(-50%);
+          transform: translateX(-50%) translateY(150%); /* Caché en bas par défaut */
+          transition: transform 0.3s ease-in-out;
           width: 90%;
           z-index: 1000;
           box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -49,6 +50,9 @@
           text-align: center;
           padding: 1rem 0.5rem;
           white-space: nowrap; /* Empêche le passage à la ligne */
+        }
+        .mobile-sticky-cta.show-sticky-cta {
+          transform: translateX(-50%) translateY(0);
         }
       }
       @media (min-width: 769px) {
@@ -266,6 +270,18 @@
     document.querySelectorAll("section:not(.reveal)").forEach(el => {
       el.classList.add("reveal");
       observer.observe(el);
+    });
+
+    // Sticky CTA logic
+    document.addEventListener('scroll', function() {
+      var stickyCta = document.querySelector('.mobile-sticky-cta');
+      if (stickyCta) {
+        if (window.scrollY > window.innerHeight * 0.7) {
+          stickyCta.classList.add('show-sticky-cta');
+        } else {
+          stickyCta.classList.remove('show-sticky-cta');
+        }
+      }
     });
   </script>
 </body>
