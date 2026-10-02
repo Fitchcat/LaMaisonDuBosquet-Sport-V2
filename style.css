@@ -134,7 +134,8 @@ img {
   width: 100%;
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 var(--container-px);
+  padding-left: var(--container-px);
+  padding-right: var(--container-px);
 }
 
 section {
@@ -149,6 +150,8 @@ section {
 
 .text-center { text-align: center; }
 .text-center p { margin-left: auto; margin-right: auto; }
+
+.mt-4 { margin-top: 2rem; }
 
 /* ==========================================================================
    HEADER
