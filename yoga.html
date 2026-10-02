@@ -122,11 +122,20 @@
     </div>
     
     <style>
-      .bsport-desktop-only { display: block; }
-      .bsport-mobile-only { display: none; }
+      /* Sur desktop, on donne plus de place au widget pour forcer le passage en mode carte */
+      @media (min-width: 1000px) {
+        #planning.container {
+          max-width: 100%;
+          padding-left: 2vw;
+          padding-right: 2vw;
+        }
+      }
       @media (max-width: 768px) {
-        .bsport-desktop-only { display: none !important; }
-        .bsport-mobile-only { display: block !important; }
+        /* Réduit le padding sur mobile pour que le widget Bsport ait la place de s'afficher sans être coupé */
+        #planning.container {
+          padding-left: 10px;
+          padding-right: 10px;
+        }
       }
     </style>
     
@@ -134,7 +143,7 @@
     <script id="bsport-widget-mount">
         function MountBsportWidget(config, repeat=1) {
             if (repeat > 50) { return }
-            if (!window.BsportWidget) {
+            if (!window.BsportWidget || !document.getElementById(config.parentElement)) {
                 return setTimeout(() => {
                     MountBsportWidget(config,repeat+1)
                 }, 100 * repeat || 1)
@@ -143,48 +152,26 @@
         }
     </script>
     <script>
-        // Instance DESKTOP forçant le mode Carte
         MountBsportWidget({
-                "parentElement": "bsport-widget-242677-desktop",
-                "companyId": 2561,
-                "franchiseId": null,
-                "dialogMode": 0,
-                "widgetType": "calendar", 
-                "showFab": true,
-                "fullScreenPopup": false,
-                "styles": undefined,
-                "config": {
-                    "calendar": {
-                        "cardMode": true,
-                        "metaActivities": [ 182567, 182570, 202113, 245144, 225581 ],
-                        "establishments": [ 9788, 9787, 9790 ],
-                        "establishmentGroups": []
-                    }
-                }  
-        });
-
-        // Instance MOBILE forçant le mode Liste
-        MountBsportWidget({
-                "parentElement": "bsport-widget-242677-mobile",
-                "companyId": 2561,
-                "franchiseId": null,
-                "dialogMode": 0,
-                "widgetType": "calendar", 
-                "showFab": true,
-                "fullScreenPopup": false,
-                "styles": undefined,
-                "config": {
-                    "calendar": {
-                        "cardMode": false,
-                        "metaActivities": [ 182567, 182570, 202113, 245144, 225581 ],
-                        "establishments": [ 9788, 9787, 9790 ],
-                        "establishmentGroups": []
-                    }
-                }  
+            "parentElement": "bsport-widget-242677",
+            "companyId": 2561,
+            "franchiseId": null,
+            "dialogMode": 2,
+            "widgetType": "calendar",
+            "showFab": false,
+            "fullScreenPopup": true,
+            "config": {
+                "calendar": {
+                    "cardMode": null,
+                    "todayOnly": false,
+                    "metaActivities": [ 182567, 182570, 202113, 245144, 225581 ],
+                    "establishments": [ 9788, 9787, 9790 ],
+                    "groupSessionByPeriod": false
+                }
+            }
         });
     </script>
-    <div id="bsport-widget-242677-desktop" class="bsport-desktop-only" style="width: 100%; position: relative;"></div>
-    <div id="bsport-widget-242677-mobile" class="bsport-mobile-only" style="width: 100%; position: relative;"></div>
+    <div id="bsport-widget-242677"></div>
   </section>
 
     <!-- CTA BANNER -->
