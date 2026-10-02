@@ -864,3 +864,13 @@ html, body, div[id^="bsport-widget"] {
 .hero-carousel-slide.active {
   opacity: 1;
 }
+
+/* ==========================================================================
+   GLOBAL HACK BSPORT WIDGET (Mobile Only <= 1000px)
+   Masque les jours sans cours dans tous les widgets Bsport sur mobile.
+   ========================================================================== */
+@media (max-width: 1000px) {
+  div[id^="bsport-widget"] .cleanslate button.bs-week__header__date--is-abled:has(.bs-week__header__date__dots:empty) {
+      display: none !important;
+  }
+}
