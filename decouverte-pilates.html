@@ -210,6 +210,30 @@
         }
     }
 })
+
+    // Auto-select the first available day
+    const bsInterval = setInterval(() => {
+      const days = document.querySelectorAll('#planning-essai .cleanslate button.bs-week__header__date--is-abled');
+      if (days.length === 0) return;
+
+      let firstAvailable = null;
+      for (let btn of days) {
+        const dots = btn.querySelector('.bs-week__header__date__dots');
+        if (dots && dots.innerHTML.trim() !== '') {
+          firstAvailable = btn;
+          break;
+        }
+      }
+
+      if (firstAvailable) {
+        clearInterval(bsInterval);
+        const isSelected = firstAvailable.querySelector('.bs-week__header__date__monthDay--is-selected');
+        if (!isSelected) {
+          firstAvailable.click();
+        }
+      }
+    }, 500);
+    setTimeout(() => clearInterval(bsInterval), 15000);
     </script>
     <div id="bsport-widget-d77a9622-3c0c-40a4-9e96-cae5d7a7aa8c"></div>
     <!-- FIN WIDGET -->
