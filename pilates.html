@@ -137,6 +137,13 @@
           padding-right: 10px;
         }
       }
+      
+      /* === HACK BSPORT WIDGET === */
+      /* Cacher les filtres en forçant via .cleanslate */
+      #planning .cleanslate .bs-marketplace-filters__list {
+          display: none !important;
+      }
+      /* ========================== */
     </style>
     
     <script id="insert-bsport-widget-cdn">!function (b, s, p, o, r, t) { typeof window.BsportWidget === "undefined" && !document.getElementById("bsport-widget-cdn") && !function () { m = b.createElement(s), m.id = "bsport-widget-cdn", m.src = p, b.getElementsByTagName("head")[0].appendChild(m) }() }(document, "script", "https://cdn.bsport.io/scripts/widget.js")</script>
@@ -263,5 +270,6 @@
 
 
   </script>
+  <script src="bsport-hack.js"></script>
 </body>
 </html>
