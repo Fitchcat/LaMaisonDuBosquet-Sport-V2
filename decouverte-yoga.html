@@ -257,18 +257,20 @@
 
     const burger = document.querySelector('.burger-btn');
     const menu = document.querySelector('.mobile-menu');
-    burger.addEventListener('click', () => {
-      menu.classList.toggle('open');
-      document.querySelector('.site-header').classList.toggle('menu-open');
-      const lines = burger.querySelectorAll('.burger-line');
-      if (menu.classList.contains('open')) {
-        lines[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-        lines[2].style.transform = 'rotate(-45deg) translate(2px, -2px)';
-      } else {
-        lines[0].style.transform = 'none';
-        lines[2].style.transform = 'none';
-      }
-    });
+    if (burger && menu) {
+      burger.addEventListener('click', () => {
+        menu.classList.toggle('open');
+        document.querySelector('.site-header').classList.toggle('menu-open');
+        const lines = burger.querySelectorAll('.burger-line');
+        if (menu.classList.contains('open')) {
+          lines[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+          lines[2].style.transform = 'rotate(-45deg) translate(2px, -2px)';
+        } else {
+          lines[0].style.transform = 'none';
+          lines[2].style.transform = 'none';
+        }
+      });
+    }
   
     // Parallax and global reveal
     document.querySelectorAll("section:not(.reveal)").forEach(el => {
