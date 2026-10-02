@@ -337,9 +337,9 @@ section {
 
 @media (max-width: 768px) {
   .luxury-hero {
-    height: 70vh; /* Raccourci sur mobile pour entrer dans le vif du sujet */
-    min-height: 400px;
-    margin-bottom: 2rem; /* Moins d'espace en dessous du hero sur mobile */
+    height: 92vh; /* Agrandissement pour que le contenu respire et ne chevauche pas le logo */
+    min-height: 620px;
+    margin-bottom: 2.5rem;
   }
 }
 
@@ -412,7 +412,8 @@ section {
 
 @media (max-width: 768px) {
   .hero-text-overlay {
-    margin-top: 10vh; /* Remonte le texte sur mobile */
+    margin-top: 20vh; /* Pousse le texte sous le logo et le burger */
+    padding: 0 1.5rem;
   }
 }
 
